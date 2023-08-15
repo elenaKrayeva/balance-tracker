@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Expenses } from "./pages/expensesPage/Expenses";
+import styled from "styled-components";
+import {Burger} from "./components/Burger"
+
+const AppWrapper = styled.div`
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper>
+      <Burger></Burger>
+      <Expenses />
+    </AppWrapper>
   );
 }
 
