@@ -10,7 +10,7 @@ padding: 15px;
 `
 
 
-export const BalanceBlock = styled(Block)`
+export const AdmpanelBlock = styled(Block)`
 flex:1;
 margin-left: 250px;
 display: flex;

@@ -1,13 +1,15 @@
-import { Balance } from "./balance";
 import { NavMenu } from "../../components/NavBlock/NavMenu";
-import { AppWrapper } from "./balance.style";
+import { AppWrapper } from "./admpanel.style";
+import { Admpanel } from "./Admpanel";
 
-export const BalancePage = () => {
+
+
+export const AdmpanelPage = () => {
   return (
     <>
       <AppWrapper>
         <NavMenu />
-        <Balance />
+        <Admpanel />
       </AppWrapper>
     </>
   );
