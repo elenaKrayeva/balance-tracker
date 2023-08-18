@@ -10,6 +10,7 @@ const StyledWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 9;
+  transition: all .3s ease;
   border-right: 1px solid #fff;
   @media (min-width: 901px) {
     transform: translateX(-1000%);
@@ -28,6 +29,7 @@ const StyledBurger = styled.div`
   align-items: center;
   border: 2px solid #fff;
   border-radius: 10px;
+
   background: radial-gradient(
     circle,
     rgba(238, 174, 202, 1) 0%,

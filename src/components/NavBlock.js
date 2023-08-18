@@ -21,6 +21,7 @@ const StyledNavBlock = styled.nav`
   position: fixed;
   top: 15px;
   z-index: 10;
+  transition: all .3s ease;
   
   @media (max-width: 900px) {
     transform: ${({ $burgerOpen }) => $burgerOpen ? "translateX(0)" : "translateX(-1000%)"};

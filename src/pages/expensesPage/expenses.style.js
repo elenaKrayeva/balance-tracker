@@ -20,3 +20,12 @@ overflow-x: hidden;
     margin-left: 60px;
 }
 `
+
+export const AppWrapper = styled.div`
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
