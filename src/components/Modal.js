@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { createPortal } from "react-dom";
 
 const StyledModalWrap = styled.div`
   background: rgba(0, 0, 0, 0.4);
@@ -10,7 +11,7 @@ const StyledModalWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
+  z-index: 999;
 `;
 
 const SyledModalContent = styled.div`
@@ -21,7 +22,7 @@ const SyledModalContent = styled.div`
 `;
 
 export const Modal = ({ onAddExpense, setModalActive, children }) => {
-  return (
+  return createPortal(
     <StyledModalWrap
       onAddExpense={onAddExpense}
       onClick={() => setModalActive(false)}
@@ -32,6 +33,7 @@ export const Modal = ({ onAddExpense, setModalActive, children }) => {
       >
         {children}
       </SyledModalContent>
-    </StyledModalWrap>
+    </StyledModalWrap>,
+    document.body
   );
 };
