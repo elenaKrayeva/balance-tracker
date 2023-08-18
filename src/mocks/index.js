@@ -74,3 +74,68 @@ export const ExpenseDropdown1 = [
 ];
 
 export const ExpenseDropdown = ["Все категории", ...ExpenseDropdown1];
+
+//--------------Incomes----------------------------------------------------------
+
+
+export const INCOMESCATEGORIES = [
+  {
+    id: 1689321774041,
+    name: "Зарплата",
+    isEdditing: false,
+  },
+  {
+    id: 1680781776341,
+    name: "Фриланс",
+    isEdditing: false,
+  },
+];
+
+export const INCOMESDATA = [
+  {
+    id: 1754621776364,
+    date: new Date(2023, 4, 12),
+    description: "ЗП",
+    category: "Зарплата",
+    amount: 1000,
+    isEdditing: false,
+  },
+  {
+    id: 1688331098876,
+    date: new Date(2023, 5, 12),
+    description: "ЗП",
+    category: "Зарплата",
+    amount: 1000,
+    isEdditing: false,
+  },
+  {
+    id: 1688874776236,
+    date: new Date(2023, 6, 12),
+    description: "ЗП",
+    category: "Зарплата",
+    amount: 1000,
+    isEdditing: false,
+  },
+  {
+    id: 1688834776364,
+    date: new Date(2023, 6, 18),
+    description: "подработка",
+    category: "Фриланс",
+    amount: 200,
+    isEdditing: false,
+  },
+  {
+    id: 1688823456364,
+    date: new Date(2021, 7, 12),
+    description: "ЗП",
+    category: "Зарплата",
+    amount: 1000,
+    isEdditing: false,
+  },
+];
+
+export const IncomesDropdown1 = [
+  ...new Set(INCOMESCATEGORIES.map((category) => category.name)),
+];
+
+export const IncomesDropdown = ["Все категории", ...IncomesDropdown1];

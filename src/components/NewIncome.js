@@ -1,21 +1,21 @@
 import { FormForAdding } from "./FormForAdding";
-import { ExpenseDropdown1 } from "../mocks";
+import { IncomesDropdown1 } from "../mocks";
 
-export const NewExpense = ({onAddExpense, setModalActive}) => {
+export const NewIncome = ({onAddIncome, setModalActive}) => {
 
   const saveExpenseDataHandler = (expenseFormData) => {
-    const expenseData = {
+    const incomesData = {
       ...expenseFormData,
       id: Date.now(),
       isEdditing: false,
     };
-    onAddExpense(expenseData);
+    onAddIncome(incomesData);
   };
 
   return (
     <div>
       <FormForAdding
-        options={ExpenseDropdown1}
+        options={IncomesDropdown1}
         setModalActive={setModalActive}
         onSaveExpenseData={saveExpenseDataHandler}
       />

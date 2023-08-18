@@ -1,12 +1,12 @@
 import { Expenses } from "./Expenses";
-import { Burger } from "../../components/Burger";
+import { NavMenu } from "../../components/NavBlock/NavMenu";
 import { AppWrapper } from "./expenses.style";
 
 export const ExpensesPage = () => {
   return (
     <>
       <AppWrapper>
-        <Burger />
+        <NavMenu />
         <Expenses />
       </AppWrapper>
     </>

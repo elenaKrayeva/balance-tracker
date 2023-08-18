@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ExpensesBlock } from "./expenses.style";
-import { Flex } from "../../components/Flex";
+import { Flex } from "../../components/UI/Flex";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
 import { ExpenseDropdown } from "../../mocks/index";

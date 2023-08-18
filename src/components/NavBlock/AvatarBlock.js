@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img from "../assets/img/images.png"; 
+import img from "../../assets/img/userava.png"; 
 
 const AvatarBlockWrap = styled.div`
   background: #fff;

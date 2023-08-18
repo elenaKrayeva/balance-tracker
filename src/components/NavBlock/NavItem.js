@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { ImageBlock } from "./ImageBlock";
+import { Link } from "react-router-dom";
 
-const StyledLink = styled.a` /*будет styled(Link) */
+const StyledLink = styled(Link)` 
   padding: 15px;
   flex: 1;
   display: flex;
@@ -12,19 +13,22 @@ const StyledLink = styled.a` /*будет styled(Link) */
   cursor: pointer;
   overflow: hidden;
   transition: all 0.2s ease;
+  text-decoration: none;
+  color: #000;
 
   &:hover {
     font-weight: 400;
     font-size: 18px;
     padding: 13px;
   }
+
 `;
 
-export const NavItem = ({$img, children}) => {
+export const NavItem = ({$img, children, to}) => {
   return (
     <>
       <ImageBlock $img={$img}/>
-      <StyledLink>{children}</StyledLink>
+      <StyledLink to={to}>{children}</StyledLink>
     </>
   );
 };

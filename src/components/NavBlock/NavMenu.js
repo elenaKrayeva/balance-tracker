@@ -69,7 +69,7 @@ const StyledBurger = styled.div`
   }
 `;
 
-export const Burger = () => {
+export const NavMenu = () => {
   const [burgerOpen, setBurgerOpen] = useState(false);
 
   return (

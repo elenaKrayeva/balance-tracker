@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button } from "./Button";
-import { Flex } from "./Flex";
-import { FlexWrap } from "./FlexWrap";
+import { Flex } from "./UI/Flex";
+import { FlexWrap } from "./UI/FlexWrap";
 
 const StyledDateBlock = styled.div`
   border: 2px solid #fff;

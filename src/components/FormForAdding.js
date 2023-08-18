@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Input } from "./Input";
 import { Button } from "./Button";
-import { FlexWrap } from "./FlexWrap";
+import { FlexWrap } from "./UI/FlexWrap";
 import { Dropdown } from "./Dropdown";
 import { useState } from "react";
-import { ExpenseDropdown1 } from "../mocks";
+
 
 const StyledFormForAdding = styled.form`
 background: #e4e9f0;
@@ -24,7 +24,7 @@ const StyledLabel = styled.label`
   padding: 8px 0;
 `;
 
-export const FormForAdding = ({onSaveExpenseData, setModalActive}) => {
+export const FormForAdding = ({onSaveExpenseData, setModalActive, options}) => {
   
   const [selected, setSelected] = useState("Выберите категорию");
   const [inputName, setInputName] = useState("");
@@ -69,7 +69,7 @@ export const FormForAdding = ({onSaveExpenseData, setModalActive}) => {
     <StyledFormForAdding onSubmit={submitFormHandler}>
       <FlexWrap>
         <Dropdown
-          options={ExpenseDropdown1}
+          options={options}
           selected={selected}
           setSelected={setSelected}
         ></Dropdown>
@@ -106,7 +106,7 @@ export const FormForAdding = ({onSaveExpenseData, setModalActive}) => {
       </StyledInputBlock>
       <FlexWrap>
         <Button type="submit" onClick={checkFormHandler}>
-          Добавить Расход
+          Добавить 
         </Button>
         <Button onClick={() => setModalActive(false)}>Отмена</Button>
       </FlexWrap>
