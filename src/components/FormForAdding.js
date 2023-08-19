@@ -46,15 +46,15 @@ export const FormForAdding = ({onSaveExpenseData, setModalActive, options}) => {
   };
 
   const submitFormHandler = (event) => {
+   
     event.preventDefault();
+    if (!inputName.trim().length) return;
 
     const expenseData = {
-      id: Date.now(),
       date: new Date(inputDate),
       description: inputName,
       category: selected,
       amount: inputAmount,
-      isEdditing: false,
     };
 
     onSaveExpenseData(expenseData);

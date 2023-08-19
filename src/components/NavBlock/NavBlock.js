@@ -5,9 +5,9 @@ import { NavItem } from "./NavItem";
 import { EmptyBlock } from "../UI/EmptyBlock";
 import imgExp from "../../assets/img/expenses.png";
 import imgInc from "../../assets/img/incomes.png";
-import imgDash from "../../assets/img/dashboard.png";
 import imgLogout from "../../assets/img/logout.png";
 import imgBalance from "../../assets/img/balance.jpg"
+import imgGear from "../../assets/img/gear.jpg"
 
 const StyledNavBlock = styled.nav`
   min-height: calc(100vh - 30px);
@@ -34,7 +34,7 @@ export const NavBlock = ({$burgerOpen}) => {
     <StyledNavBlock $burgerOpen={$burgerOpen}>
       <AvatarBlock />
       <Flex>
-        <NavItem $img={imgDash} to='/admpanel'>АдминПанель</NavItem>
+        <NavItem $img={imgGear} to='/admpanel'>АдминПанель</NavItem>
       </Flex>
       <Flex>
         <NavItem $img={imgBalance} to='/balance'>Баланс</NavItem>

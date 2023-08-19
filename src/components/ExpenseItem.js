@@ -51,9 +51,9 @@ export const ExpenseItem = (props) => {
   return (
     <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
       <StyledDateBlock>
+        <StyledText>{day}</StyledText>
         <StyledText>{month}</StyledText>
         <StyledText>{year}</StyledText>
-        <StyledText>{day}</StyledText>
       </StyledDateBlock>
       <StyledFlexGrow>
         <StyledDescripBlock>{props.data.description}</StyledDescripBlock>

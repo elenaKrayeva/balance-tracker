@@ -5,7 +5,7 @@ border: 1px solid transparent;
 border-radius: 10px;
 padding: 5px 8px;
 outline: none;
-width: 100%;
+width: ${({$width}) => $width || '100%'};
 &:focus {
     box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2);
 }

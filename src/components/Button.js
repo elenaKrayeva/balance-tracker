@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 
 export const SIZE = {
+  s: css`
+    padding: 5px 7px;
+    font-size: 12px;
+    border-radius: 7px;
+  `,
   m: css`
     padding: 10px 15px;
     font-size: 16px;

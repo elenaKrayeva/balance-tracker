@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { ImageBlock } from "./ImageBlock";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const StyledLink = styled(Link)` 
+const StyledLink = styled(NavLink)`
   padding: 15px;
   flex: 1;
   display: flex;
@@ -21,14 +21,18 @@ const StyledLink = styled(Link)`
     font-size: 18px;
     padding: 13px;
   }
-
 `;
 
-export const NavItem = ({$img, children, to}) => {
+export const NavItem = ({ $img, children, to }) => {
   return (
     <>
-      <ImageBlock $img={$img}/>
-      <StyledLink to={to}>{children}</StyledLink>
+      <ImageBlock $img={$img} />
+      <StyledLink
+        to={to}
+        style={({ isActive }) => ({fontWeight: isActive ? "700" : "300" })}
+      >
+        {children}
+      </StyledLink>
     </>
   );
 };
