@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 const Block = styled.div`
-min-height: calc(100vh - 30px);
+min-height: calc(100vh - 22px);
 background: #e4e9f0;
 border: 2px solid white;
 border-radius: 15px;

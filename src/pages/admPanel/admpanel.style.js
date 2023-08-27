@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Block = styled.div`
-  min-height: calc(100vh - 30px);
+  min-height: calc(100vh - 22px);
   background: #e4e9f0;
   border: 2px solid white;
   border-radius: 15px;
@@ -45,7 +45,8 @@ export const InputDiv = styled.div`
 
 export const Text = styled.p`
 font-size: 16px;
-font-weight: 400;
+font-weight: 700;
 text-align: center;
 padding: 10px;
 `;
+

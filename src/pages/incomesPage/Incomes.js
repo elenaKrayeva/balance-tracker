@@ -4,12 +4,11 @@ import { Flex } from "../../components/UI/Flex";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
 import { IncomesDropdown } from "../../mocks/index";
-import { ExpenseItem } from "../../components/ExpenseItem";
+import { IncomeItem } from "../../components/IncomeItem";
 import { INCOMESDATA } from "../../mocks/index";
 import { NewIncome } from "../../components/NewIncome";
 import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
-
 
 export const Incomes = () => {
   const [selectedCategory, setSelectedCategory] =
@@ -29,6 +28,19 @@ export const Incomes = () => {
     });
   };
 
+  const removeIncomeHandler = (incomeId) => {
+    setIncomes(incomes.filter((income) => income.id !== incomeId));
+  };
+
+  const editIncomeHandler = (incomeId, newDescription) => {
+    setIncomes((prevIncomes) => {
+      const incomeToEdit = prevIncomes.find(({ id }) => id === incomeId);
+      incomeToEdit.isEdditing = !incomeToEdit.isEdditing;
+      incomeToEdit.description = newDescription;
+      return [...prevIncomes];
+    });
+  };
+
   const filteredByYearArr = incomes.filter(
     (income) => income.date.getFullYear() === selectedYear
   );
@@ -40,14 +52,16 @@ export const Incomes = () => {
     (income) => income.date.getFullYear() === selectedYear
   );
 
+  
+
   return (
     <>
       <IncomesBlock>
         {modalActive && (
-          <Modal
-            setModalActive={setModalActive}
-          >
-            <NewIncome onAddIncome={addIncomeHandler} setModalActive={setModalActive}
+          <Modal setModalActive={setModalActive}>
+            <NewIncome
+              onAddIncome={addIncomeHandler}
+              setModalActive={setModalActive}
             ></NewIncome>
           </Modal>
         )}
@@ -77,14 +91,24 @@ export const Incomes = () => {
           selectedYear === "Все года" &&
           incomes.length > 0 &&
           incomes.map((income) => (
-            <ExpenseItem key={income.id} data={income}></ExpenseItem>
+            <IncomeItem
+              key={income.id}
+              data={income}
+              removeIncome={removeIncomeHandler}
+              editIncome={editIncomeHandler}
+            ></IncomeItem>
           ))}
 
         {selectedCategory === "Все категории" &&
           selectedYear !== "Все года" &&
           filteredByYearArr.length > 0 &&
           filteredByYearArr.map((income) => (
-            <ExpenseItem key={income.id} data={income}></ExpenseItem>
+            <IncomeItem
+              key={income.id}
+              data={income}
+              removeIncome={removeIncomeHandler}
+              editIncome={editIncomeHandler}
+            ></IncomeItem>
           ))}
 
         {selectedCategory === "Все категории" &&
@@ -97,7 +121,12 @@ export const Incomes = () => {
           selectedYear === "Все года" &&
           filteredByCategoryArr.length > 0 &&
           filteredByCategoryArr.map((income) => (
-            <ExpenseItem key={income.id} data={income}></ExpenseItem>
+            <IncomeItem
+              key={income.id}
+              data={income}
+              removeIncome={removeIncomeHandler}
+              editIncome={editIncomeHandler}
+            ></IncomeItem>
           ))}
 
         {selectedCategory !== "Все категории" &&
@@ -110,7 +139,12 @@ export const Incomes = () => {
           selectedYear !== "Все года" &&
           filteredByCategAndYearArr.length > 0 &&
           filteredByCategAndYearArr.map((income) => (
-            <ExpenseItem key={income.id} data={income}></ExpenseItem>
+            <IncomeItem
+              key={income.id}
+              data={income}
+              removeIncome={removeIncomeHandler}
+              editIncome={editIncomeHandler}
+            ></IncomeItem>
           ))}
 
         {selectedCategory !== "Все категории" &&
@@ -122,4 +156,3 @@ export const Incomes = () => {
     </>
   );
 };
-

@@ -16,7 +16,7 @@ border: 2px solid transparent;
 border-radius: 15px;
 box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
 background: rgba(241, 231, 246, 0.6);
-margin-bottom: 20px;
+margin-bottom: ${({$mb}) => $mb || '20px'};
 `
 
 export const Flex = (props) => {

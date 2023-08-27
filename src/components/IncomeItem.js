@@ -45,14 +45,14 @@ const StyledRightBlock = styled.div`
   width: 130px;
 `;
 
-export const ExpenseItem = (props) => {
+export const IncomeItem = (props) => {
 
-  const [expenseDescription, setExpenseDescription] = useState(
+  const [incomeDescription, setIncomeDescription] = useState(
     props.data.description
   );
   
-  const expenseDescriptionHandler = (e) => {
-    setExpenseDescription(e.target.value)
+  const incomeDescriptionHandler = (e) => {
+    setIncomeDescription(e.target.value)
   }
   const month = props.data.date.toLocaleString("ru-Ru", { month: "long" });
   const year = props.data.date.getFullYear();
@@ -68,18 +68,18 @@ export const ExpenseItem = (props) => {
         <StyledDescripBlock>
           {props.data.isEdditing ? (
             <Input
-              value={expenseDescription}
-              onChange={expenseDescriptionHandler}
+              value={incomeDescription}
+              onChange={incomeDescriptionHandler}
             />
           ) : (
              props.data.description 
           )}
         </StyledDescripBlock>
         <FlexWrap>
-          <Button size="m" onClick={() => props.editExpense(props.data.id, expenseDescription)}>
+          <Button size="m" onClick={() => props.editIncome(props.data.id, incomeDescription)}>
             { props.data.isEdditing ? "Ok" :"Редактировать"}
           </Button>
-          <Button size="m" onClick={() => props.removeExpense(props.data.id)}>
+          <Button size="m" onClick={() => props.removeIncome(props.data.id)}>
             Удалить
           </Button>
         </FlexWrap>

@@ -10,7 +10,6 @@ import { NewExpense } from "../../components/NewExpense";
 import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
 
-
 export const Expenses = () => {
   const [selectedCategory, setSelectedCategory] =
     useState("Выберите категорию");
@@ -29,6 +28,19 @@ export const Expenses = () => {
     });
   };
 
+  const removeExpenseHandler = (expenseId) => {
+    setExpenses(expenses.filter((expense) => expense.id !== expenseId));
+  };
+
+  const editExpenseHandler = (expenseId, newDescription) => {
+    setExpenses((prevExpenses) => {
+      const expenseToEdit = prevExpenses.find(({ id }) => id === expenseId);
+      expenseToEdit.isEdditing = !expenseToEdit.isEdditing;
+      expenseToEdit.description = newDescription;
+      return [...prevExpenses];
+    });
+  };
+
   const filteredByYearArr = expenses.filter(
     (expense) => expense.date.getFullYear() === selectedYear
   );
@@ -44,10 +56,10 @@ export const Expenses = () => {
     <>
       <ExpensesBlock>
         {modalActive && (
-          <Modal
-            setModalActive={setModalActive}
-          >
-            <NewExpense onAddExpense={addExpenseHandler} setModalActive={setModalActive}
+          <Modal setModalActive={setModalActive}>
+            <NewExpense
+              onAddExpense={addExpenseHandler}
+              setModalActive={setModalActive}
             ></NewExpense>
           </Modal>
         )}
@@ -77,14 +89,24 @@ export const Expenses = () => {
           selectedYear === "Все года" &&
           expenses.length > 0 &&
           expenses.map((expense) => (
-            <ExpenseItem key={expense.id} data={expense}></ExpenseItem>
+            <ExpenseItem
+              key={expense.id}
+              data={expense}
+              removeExpense={removeExpenseHandler}
+              editExpense={editExpenseHandler}
+            ></ExpenseItem>
           ))}
 
         {selectedCategory === "Все категории" &&
           selectedYear !== "Все года" &&
           filteredByYearArr.length > 0 &&
           filteredByYearArr.map((expense) => (
-            <ExpenseItem key={expense.id} data={expense}></ExpenseItem>
+            <ExpenseItem
+              key={expense.id}
+              data={expense}
+              removeExpense={removeExpenseHandler}
+              editExpense={editExpenseHandler}
+            ></ExpenseItem>
           ))}
 
         {selectedCategory === "Все категории" &&
@@ -97,7 +119,12 @@ export const Expenses = () => {
           selectedYear === "Все года" &&
           filteredByCategoryArr.length > 0 &&
           filteredByCategoryArr.map((expense) => (
-            <ExpenseItem key={expense.id} data={expense}></ExpenseItem>
+            <ExpenseItem
+              key={expense.id}
+              data={expense}
+              removeExpense={removeExpenseHandler}
+              editExpense={editExpenseHandler}
+            ></ExpenseItem>
           ))}
 
         {selectedCategory !== "Все категории" &&
@@ -110,7 +137,12 @@ export const Expenses = () => {
           selectedYear !== "Все года" &&
           filteredByCategAndYearArr.length > 0 &&
           filteredByCategAndYearArr.map((expense) => (
-            <ExpenseItem key={expense.id} data={expense}></ExpenseItem>
+            <ExpenseItem
+              key={expense.id}
+              data={expense}
+              removeExpense={removeExpenseHandler}
+              editExpense={editExpenseHandler}
+            ></ExpenseItem>
           ))}
 
         {selectedCategory !== "Все категории" &&

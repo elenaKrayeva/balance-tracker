@@ -46,7 +46,7 @@ export const NavBlock = ({$burgerOpen}) => {
         <NavItem $img={imgInc} to='/incomes'>Доходы</NavItem>
       </Flex>
       <EmptyBlock />
-      <Flex>
+      <Flex $mb='0'>
         <NavItem $img={imgLogout} to='/'>Выйти</NavItem>
       </Flex>
     </StyledNavBlock>

@@ -74,7 +74,7 @@ export const Dropdown = ({ options, selected, setSelected }) => {
             <StyledDropdownItem
               key={option}
               onClick={() => {
-                setSelected(option);
+                setSelected(option); //===dispatch(changeOption(option)) ??
                 setIsActive(false);
               }}
             >
