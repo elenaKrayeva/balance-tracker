@@ -4,15 +4,16 @@ import { Button } from "./Button";
 import { FlexWrap } from "./UI/FlexWrap";
 import { Dropdown } from "./Dropdown";
 import { useState } from "react";
-
+import { addExpense } from "../store/expensesSlice";
+import { useDispatch } from "react-redux";
 
 const StyledFormForAdding = styled.form`
-background: #e4e9f0;
-border: 2px solid #fff;
-border-radius: 15px;
-padding: 15px;
-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
-margin: 20px 20px;
+  background: #e4e9f0;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
+  margin: 20px 20px;
 `;
 
 const StyledInputBlock = styled.div`
@@ -24,12 +25,13 @@ const StyledLabel = styled.label`
   padding: 8px 0;
 `;
 
-export const FormForAdding = ({onSaveExpenseData, setModalActive, options}) => {
-  
+export const FormForAdding = ({ setModalActive, options }) => {
   const [selected, setSelected] = useState("Выберите категорию");
   const [inputName, setInputName] = useState("");
   const [inputAmount, setInputAmount] = useState("");
   const [inputDate, setInputDate] = useState("");
+
+  const dispatch = useDispatch();
 
   const inputNameHandler = (event) => {
     setInputName(event.target.value);
@@ -46,18 +48,10 @@ export const FormForAdding = ({onSaveExpenseData, setModalActive, options}) => {
   };
 
   const submitFormHandler = (event) => {
-   
     event.preventDefault();
     if (!inputName.trim().length) return;
 
-    const expenseData = {
-      date: new Date(inputDate),
-      description: inputName,
-      category: selected,
-      amount: inputAmount,
-    };
-
-    onSaveExpenseData(expenseData);
+    dispatch(addExpense({ inputDate, selected, inputAmount, inputName }));
     setSelected("Выберите категорию");
     setInputName("");
     setInputAmount("");
@@ -106,7 +100,7 @@ export const FormForAdding = ({onSaveExpenseData, setModalActive, options}) => {
       </StyledInputBlock>
       <FlexWrap>
         <Button type="submit" onClick={checkFormHandler}>
-          Добавить 
+          Добавить
         </Button>
         <Button onClick={() => setModalActive(false)}>Отмена</Button>
       </FlexWrap>

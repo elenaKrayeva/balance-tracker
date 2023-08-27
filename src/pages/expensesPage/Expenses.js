@@ -3,64 +3,47 @@ import { ExpensesBlock } from "./expenses.style";
 import { Flex } from "../../components/UI/Flex";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
-import { ExpenseDropdown } from "../../mocks/index";
+import { ExpenseDropdown } from "../../mocks/index"; // массив категорий из стейта категорий
 import { ExpenseItem } from "../../components/ExpenseItem";
-import { EXPENSESDATA } from "../../mocks/index";
-import { NewExpense } from "../../components/NewExpense";
 import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
+import { useSelector } from "react-redux";
+import { FormForAdding } from "../../components/FormForAdding";
+import { ExpenseDropdown1 } from "../../mocks/index";
 
 export const Expenses = () => {
+  const expenses = useSelector((state) => state.expenses.expensesArr);
   const [selectedCategory, setSelectedCategory] =
     useState("Выберите категорию");
   const [selectedYear, setSelectedYear] = useState("Выберите год");
-  const [expenses, setExpenses] = useState(EXPENSESDATA);
   const [modalActive, setModalActive] = useState(false);
 
   const YearsDropdown = [
     "Все года",
-    ...new Set(expenses.map((data) => data.date.getFullYear())),
+    ...new Set(expenses.map((data) => new Date(data.date).getFullYear())),
   ];
 
-  const addExpenseHandler = (expense) => {
-    setExpenses((prevExpense) => {
-      return [expense, ...prevExpense];
-    });
-  };
-
-  const removeExpenseHandler = (expenseId) => {
-    setExpenses(expenses.filter((expense) => expense.id !== expenseId));
-  };
-
-  const editExpenseHandler = (expenseId, newDescription) => {
-    setExpenses((prevExpenses) => {
-      const expenseToEdit = prevExpenses.find(({ id }) => id === expenseId);
-      expenseToEdit.isEdditing = !expenseToEdit.isEdditing;
-      expenseToEdit.description = newDescription;
-      return [...prevExpenses];
-    });
-  };
-
-  const filteredByYearArr = expenses.filter(
-    (expense) => expense.date.getFullYear() === selectedYear
+  /* const filteredByYearArr = expenses.filter(
+    (expense) => new Date(expense.date).getFullYear() === selectedYear
   );
   const filteredByCategoryArr = expenses.filter(
     (expense) => expense.category === selectedCategory
   );
 
   const filteredByCategAndYearArr = filteredByCategoryArr.filter(
-    (expense) => expense.date.getFullYear() === selectedYear
-  );
+    (expense) => new Date(expense.date).getFullYear() === selectedYear
+  ); */
 
+  
   return (
     <>
       <ExpensesBlock>
         {modalActive && (
           <Modal setModalActive={setModalActive}>
-            <NewExpense
-              onAddExpense={addExpenseHandler}
+            <FormForAdding
+              options={ExpenseDropdown1}
               setModalActive={setModalActive}
-            ></NewExpense>
+            ></FormForAdding>
           </Modal>
         )}
         <Flex $justify="center">
@@ -89,15 +72,10 @@ export const Expenses = () => {
           selectedYear === "Все года" &&
           expenses.length > 0 &&
           expenses.map((expense) => (
-            <ExpenseItem
-              key={expense.id}
-              data={expense}
-              removeExpense={removeExpenseHandler}
-              editExpense={editExpenseHandler}
-            ></ExpenseItem>
+            <ExpenseItem key={expense.id} data={expense}></ExpenseItem>
           ))}
 
-        {selectedCategory === "Все категории" &&
+        {/* {selectedCategory === "Все категории" &&
           selectedYear !== "Все года" &&
           filteredByYearArr.length > 0 &&
           filteredByYearArr.map((expense) => (
@@ -149,7 +127,7 @@ export const Expenses = () => {
           selectedYear !== "Все года" &&
           filteredByCategAndYearArr.length === 0 && (
             <AbsentData>Расходов нет</AbsentData>
-          )}
+          )} */}
       </ExpensesBlock>
     </>
   );

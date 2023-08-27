@@ -1,4 +1,4 @@
-import { FormForAdding } from "./FormForAdding";
+/* import { FormForAdding } from "./FormForAdding";
 import { ExpenseDropdown1 } from "../mocks";
 
 export const NewExpense = ({onAddExpense, setModalActive}) => {
@@ -21,4 +21,4 @@ export const NewExpense = ({onAddExpense, setModalActive}) => {
       />
     </div>
   );
-};
+}; */
