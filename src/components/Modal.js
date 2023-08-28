@@ -21,14 +21,12 @@ const SyledModalContent = styled.div`
   width: fit-content;
 `;
 
-export const Modal = ({ onAddExpense, setModalActive, children }) => {
+export const Modal = ({ setModalActive, children }) => {
   return createPortal(
     <StyledModalWrap
-      onAddExpense={onAddExpense}
       onClick={() => setModalActive(false)}
     >
       <SyledModalContent
-        onAddExpense={onAddExpense}
         onClick={(e) => e.stopPropagation()}
       >
         {children}

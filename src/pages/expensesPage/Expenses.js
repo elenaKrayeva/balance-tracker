@@ -9,13 +9,18 @@ import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
 import { useSelector } from "react-redux";
 import { FormForAdding } from "../../components/FormForAdding";
-import { ExpenseDropdown1 } from "../../mocks/index";
+import { ExpenseDropdown1 } from "../../mocks/index"; // в форму тоже из стейта категорий
+import { changeCategory, changeYear } from "../../store/filterExpensesSlice";
+import {
+  selectExpensesByDropdowns,
+  selectActiveDropdowns,
+} from "../../store/selectors";
 
 export const Expenses = () => {
-  const expenses = useSelector((state) => state.expenses.expensesArr);
-  const [selectedCategory, setSelectedCategory] =
-    useState("Выберите категорию");
-  const [selectedYear, setSelectedYear] = useState("Выберите год");
+  const expenses = useSelector(selectExpensesByDropdowns);
+  const filterExpenses = useSelector(selectActiveDropdowns);
+  console.log(filterExpenses);
+
   const [modalActive, setModalActive] = useState(false);
 
   const YearsDropdown = [
@@ -23,18 +28,6 @@ export const Expenses = () => {
     ...new Set(expenses.map((data) => new Date(data.date).getFullYear())),
   ];
 
-  /* const filteredByYearArr = expenses.filter(
-    (expense) => new Date(expense.date).getFullYear() === selectedYear
-  );
-  const filteredByCategoryArr = expenses.filter(
-    (expense) => expense.category === selectedCategory
-  );
-
-  const filteredByCategAndYearArr = filteredByCategoryArr.filter(
-    (expense) => new Date(expense.date).getFullYear() === selectedYear
-  ); */
-
-  
   return (
     <>
       <ExpensesBlock>
@@ -54,80 +47,23 @@ export const Expenses = () => {
         <Flex $justify="space-between">
           <Dropdown
             options={ExpenseDropdown}
-            selected={selectedCategory}
-            setSelected={setSelectedCategory}
+            selected={filterExpenses.selectedCategory}
+            setSelected={changeCategory}
           />
           <Dropdown
             options={YearsDropdown}
-            selected={selectedYear}
-            setSelected={setSelectedYear}
+            selected={filterExpenses.selectedYear}
+            setSelected={changeYear}
           />
         </Flex>
 
-        {selectedCategory === "Все категории" &&
-          selectedYear === "Все года" &&
-          expenses.length === 0 && <AbsentData>Расходов нет</AbsentData>}
-
-        {selectedCategory === "Все категории" &&
-          selectedYear === "Все года" &&
-          expenses.length > 0 &&
+        {expenses.length === 0 ? (
+          <AbsentData>Расходов нет</AbsentData>
+        ) : (
           expenses.map((expense) => (
-            <ExpenseItem key={expense.id} data={expense}></ExpenseItem>
-          ))}
-
-        {/* {selectedCategory === "Все категории" &&
-          selectedYear !== "Все года" &&
-          filteredByYearArr.length > 0 &&
-          filteredByYearArr.map((expense) => (
-            <ExpenseItem
-              key={expense.id}
-              data={expense}
-              removeExpense={removeExpenseHandler}
-              editExpense={editExpenseHandler}
-            ></ExpenseItem>
-          ))}
-
-        {selectedCategory === "Все категории" &&
-          selectedYear !== "Все года" &&
-          filteredByYearArr.length === 0 && (
-            <AbsentData>Расходов нет</AbsentData>
-          )}
-
-        {selectedCategory !== "Все категории" &&
-          selectedYear === "Все года" &&
-          filteredByCategoryArr.length > 0 &&
-          filteredByCategoryArr.map((expense) => (
-            <ExpenseItem
-              key={expense.id}
-              data={expense}
-              removeExpense={removeExpenseHandler}
-              editExpense={editExpenseHandler}
-            ></ExpenseItem>
-          ))}
-
-        {selectedCategory !== "Все категории" &&
-          selectedYear === "Все года" &&
-          filteredByCategoryArr.length === 0 && (
-            <AbsentData>Расходов нет</AbsentData>
-          )}
-
-        {selectedCategory !== "Все категории" &&
-          selectedYear !== "Все года" &&
-          filteredByCategAndYearArr.length > 0 &&
-          filteredByCategAndYearArr.map((expense) => (
-            <ExpenseItem
-              key={expense.id}
-              data={expense}
-              removeExpense={removeExpenseHandler}
-              editExpense={editExpenseHandler}
-            ></ExpenseItem>
-          ))}
-
-        {selectedCategory !== "Все категории" &&
-          selectedYear !== "Все года" &&
-          filteredByCategAndYearArr.length === 0 && (
-            <AbsentData>Расходов нет</AbsentData>
-          )} */}
+            <ExpenseItem key={expense.id} data={expense} />
+          ))
+        )}
       </ExpensesBlock>
     </>
   );

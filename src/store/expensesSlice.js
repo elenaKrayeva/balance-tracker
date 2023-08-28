@@ -18,9 +18,9 @@ const expensesSlice = createSlice({
       });
     },
     removeExpense(state, action) {
-      state.expensesArr = state.expensesArr.filter((expense) => {
-        return expense.id !== action.payload;
-      });
+      state.expensesArr = state.expensesArr.filter(
+        (expense) => expense.id !== action.payload
+      );
     },
     editExpense(state, action) {
       const expenseToEdit = state.expensesArr.find(

@@ -5,8 +5,8 @@ const initialState = {
     selectedYear: 'Все года',
 }
 
-const filterExpensesSlice = createSlice({
-    name: 'filterExpenses',
+const filterIncomesSlice = createSlice({
+    name: 'filterIncomes',
     initialState,
     reducers: {
         changeCategory(state, action)  {
@@ -18,5 +18,5 @@ const filterExpensesSlice = createSlice({
     }
 });
 
-export const {changeCategory, changeYear} = filterExpensesSlice.actions;
-export default filterExpensesSlice.reducer;
+export const {changeCategory, changeYear} = filterIncomesSlice.actions;
+export default filterIncomesSlice.reducer;

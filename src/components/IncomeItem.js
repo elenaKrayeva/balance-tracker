@@ -4,6 +4,8 @@ import { Flex } from "./UI/Flex";
 import { FlexWrap } from "./UI/FlexWrap";
 import { useState } from "react";
 import { Input } from "./Input";
+import { useDispatch } from "react-redux";
+import { removeIncome, editIncome } from "../store/incomesSlice";
 
 const StyledDateBlock = styled.div`
   border: 2px solid #fff;
@@ -46,17 +48,21 @@ const StyledRightBlock = styled.div`
 `;
 
 export const IncomeItem = (props) => {
-
+  const dispatch = useDispatch();
   const [incomeDescription, setIncomeDescription] = useState(
     props.data.description
   );
-  
+
   const incomeDescriptionHandler = (e) => {
-    setIncomeDescription(e.target.value)
-  }
-  const month = props.data.date.toLocaleString("ru-Ru", { month: "long" });
-  const year = props.data.date.getFullYear();
-  const day = props.data.date.toLocaleString("ru-Ru", { day: "2-digit" });
+    setIncomeDescription(e.target.value);
+  };
+  const month = new Date(props.data.date).toLocaleString("ru-Ru", {
+    month: "long",
+  });
+  const year = new Date(props.data.date).getFullYear();
+  const day = new Date(props.data.date).toLocaleString("ru-Ru", {
+    day: "2-digit",
+  });
   return (
     <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
       <StyledDateBlock>
@@ -72,14 +78,27 @@ export const IncomeItem = (props) => {
               onChange={incomeDescriptionHandler}
             />
           ) : (
-             props.data.description 
+            props.data.description
           )}
         </StyledDescripBlock>
         <FlexWrap>
-          <Button size="m" onClick={() => props.editIncome(props.data.id, incomeDescription)}>
-            { props.data.isEdditing ? "Ok" :"Редактировать"}
+          <Button
+            size="m"
+            onClick={() =>
+              dispatch(
+                editIncome({
+                  id: props.data.id,
+                  description: incomeDescription,
+                })
+              )
+            }
+          >
+            {props.data.isEdditing ? "Ok" : "Редактировать"}
           </Button>
-          <Button size="m" onClick={() => props.removeIncome(props.data.id)}>
+          <Button
+            size="m"
+            onClick={() => dispatch(removeIncome(props.data.id))}
+          >
             Удалить
           </Button>
         </FlexWrap>
