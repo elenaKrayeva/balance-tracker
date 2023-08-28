@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-
 const StyledDropdown = styled.div`
   margin: 20px;
   width: 300px;
@@ -18,7 +17,7 @@ const StyledDropdownFlex = styled.div`
   display: flex;
   align-items: center;
   background: #fff;
-  
+
   &:hover {
     background: #f0f4f5;
   }
@@ -61,9 +60,9 @@ const StyledDropdownItem = styled.div`
 `;
 
 export const Dropdown = ({ options, selected, setSelected }) => {
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState(false);
-  
+
   return (
     <StyledDropdown>
       <StyledDropdownFlex onClick={() => setIsActive(!isActive)}>
@@ -76,7 +75,8 @@ export const Dropdown = ({ options, selected, setSelected }) => {
             <StyledDropdownItem
               key={option}
               onClick={() => {
-                dispatch(setSelected(option)); 
+                dispatch(setSelected(option));
+                /* setSelected(option); */
                 setIsActive(false);
               }}
             >

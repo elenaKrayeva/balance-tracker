@@ -12,12 +12,22 @@ import { useState } from "react";
 import { EXPENSECATEGORIES, INCOMESCATEGORIES } from "../../mocks/index";
 import { CategoryExpenseItem } from "../../components/CategoryExpenseItem";
 import { CategoryIncomeItem } from "../../components/CategoryIncomeItem";
+import { useSelector, useDispatch } from "react-redux";
+import { addExpenseCategory } from "../../store/expensesCategoriesSlice";
+import { addIncomeCategory } from "../../store/incomesCategoriesSlice";
 
 export const Admpanel = () => {
+  const expenseCategories = useSelector(
+    (state) => state.expensesCategories.expensesCategArr
+  );
+  const incomeCategories = useSelector(
+    (state) => state.incomesCategories.incomesCategArr
+  );
+
+  const dispatch = useDispatch();
+
   const [inputIncome, setInputIncome] = useState("");
   const [inputExpense, setInputExpense] = useState("");
-  const [expenseCategories, setExpenseCategories] = useState(EXPENSECATEGORIES);
-  const [incomeCategories, setIncomeCategories] = useState(INCOMESCATEGORIES);
 
   const handleInputIncome = (e) => {
     setInputIncome(e.target.value);
@@ -25,43 +35,17 @@ export const Admpanel = () => {
   const handleInputExpense = (e) => {
     setInputExpense(e.target.value);
   };
+
   const addIncomeCategoryHandler = () => {
-    setIncomeCategories((prevIncome) => {
-      return [
-        ...prevIncome,
-        {
-          id: Date.now(),
-          name: inputIncome,
-          isEdditing: false,
-        },
-      ];
-    });
+    if (!inputIncome.trim().length) return;
+    dispatch(addIncomeCategory({ inputIncome }));
     setInputIncome("");
   };
+
   const addExpenseCategoryHandler = () => {
-    setExpenseCategories((prevExpense) => {
-      return [
-        ...prevExpense,
-        {
-          id: Date.now(),
-          name: inputExpense,
-          isEdditing: false,
-        },
-      ];
-    });
+    if (!inputExpense.trim().length) return;
+    dispatch(addExpenseCategory({ inputExpense }));
     setInputExpense("");
-  };
-
-  const removeExpenseHandler = (expenseId) => {
-    setExpenseCategories(
-      expenseCategories.filter((expense) => expense.id !== expenseId)
-    );
-  };
-
-  const removeIncomeHandler = (incomeId) => {
-    setIncomeCategories(
-      incomeCategories.filter((income) => income.id !== incomeId)
-    );
   };
 
   return (
@@ -84,11 +68,7 @@ export const Admpanel = () => {
         <Flex $direction="column">
           <Text> Категории доходов:</Text>
           {incomeCategories.map((categ) => (
-            <CategoryIncomeItem
-              key={categ.id}
-              removeIncome={removeIncomeHandler}
-              id={categ.id}
-            >
+            <CategoryIncomeItem key={categ.id} id={categ.id}>
               {categ.name}
             </CategoryIncomeItem>
           ))}
@@ -112,11 +92,7 @@ export const Admpanel = () => {
         <Flex $direction="column">
           <Text> Категории расходов:</Text>
           {expenseCategories.map((categ) => (
-            <CategoryExpenseItem
-              key={categ.id}
-              removeExpense={removeExpenseHandler}
-              id={categ.id}
-            >
+            <CategoryExpenseItem key={categ.id} id={categ.id}>
               {categ.name}
             </CategoryExpenseItem>
           ))}

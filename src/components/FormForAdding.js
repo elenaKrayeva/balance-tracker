@@ -64,7 +64,7 @@ export const FormForAdding = ({ setModalActive, options }) => {
       <FlexWrap>
         <Dropdown
           options={options}
-          selected={selected}
+          selected={selected} //state categories
           setSelected={setSelected}
         ></Dropdown>
       </FlexWrap>
