@@ -9,7 +9,6 @@ import { Flex } from "../../components/UI/Flex";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { useState } from "react";
-import { EXPENSECATEGORIES, INCOMESCATEGORIES } from "../../mocks/index";
 import { CategoryExpenseItem } from "../../components/CategoryExpenseItem";
 import { CategoryIncomeItem } from "../../components/CategoryIncomeItem";
 import { useSelector, useDispatch } from "react-redux";

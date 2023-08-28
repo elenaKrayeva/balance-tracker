@@ -69,11 +69,11 @@ export const EXPENSESDATA = [
   },
 ];
 
-export const ExpenseDropdown1 = [
+/* export const ExpenseDropdown1 = [
   ...new Set(EXPENSECATEGORIES.map((category) => category.name)),
 ];
 
-export const ExpenseDropdown = ["Все категории", ...ExpenseDropdown1];
+export const ExpenseDropdown = ["Все категории", ...ExpenseDropdown1]; */
 
 //--------------Incomes----------------------------------------------------------
 

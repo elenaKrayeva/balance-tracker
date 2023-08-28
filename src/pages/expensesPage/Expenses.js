@@ -3,30 +3,39 @@ import { ExpensesBlock } from "./expenses.style";
 import { Flex } from "../../components/UI/Flex";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
-import { ExpenseDropdown } from "../../mocks/index"; // массив категорий из стейта категорий
 import { ExpenseItem } from "../../components/ExpenseItem";
 import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
 import { useSelector } from "react-redux";
 import { FormForAdding } from "../../components/FormForAdding";
-import { ExpenseDropdown1 } from "../../mocks/index"; // в форму тоже из стейта категорий
 import { changeCategory, changeYear } from "../../store/filterExpensesSlice";
 import {
   selectExpensesByDropdowns,
   selectActiveDropdowns,
 } from "../../store/selectors";
 
+
+
+
 export const Expenses = () => {
   const expenses = useSelector(selectExpensesByDropdowns);
   const filterExpenses = useSelector(selectActiveDropdowns);
-  console.log(filterExpenses);
+  const categories = useSelector(
+    (state) => state.expensesCategories.expensesCategArr
+  );
 
-  const [modalActive, setModalActive] = useState(false);
+  const categoriesForFormAdding = [
+    ...new Set(categories.map((category) => category.name)),
+  ];
+
+  const categoriesDropdown = ["Все категории", ...categoriesForFormAdding];
 
   const YearsDropdown = [
     "Все года",
     ...new Set(expenses.map((data) => new Date(data.date).getFullYear())),
   ];
+
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <>
@@ -34,7 +43,7 @@ export const Expenses = () => {
         {modalActive && (
           <Modal setModalActive={setModalActive}>
             <FormForAdding
-              options={ExpenseDropdown1}
+              options={categoriesForFormAdding}
               setModalActive={setModalActive}
             ></FormForAdding>
           </Modal>
@@ -46,14 +55,14 @@ export const Expenses = () => {
         </Flex>
         <Flex $justify="space-between">
           <Dropdown
-            options={ExpenseDropdown}
-            selected={filterExpenses.selectedCategory}
-            setSelected={changeCategory}
+            options={categoriesDropdown}
+            selectedOption={filterExpenses.selectedCategory}     
+            setSelectedOption={changeCategory}
           />
           <Dropdown
             options={YearsDropdown}
-            selected={filterExpenses.selectedYear}
-            setSelected={changeYear}
+            selectedOption={filterExpenses.selectedYear}
+            setSelectedOption={changeYear}
           />
         </Flex>
 

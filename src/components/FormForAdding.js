@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { FlexWrap } from "./UI/FlexWrap";
-import { Dropdown } from "./Dropdown";
 import { useState } from "react";
 import { addExpense } from "../store/expensesSlice";
 import { useDispatch } from "react-redux";
+import { FormDropdown } from "./FormDropdown";
 
 const StyledFormForAdding = styled.form`
   background: #e4e9f0;
@@ -62,11 +62,11 @@ export const FormForAdding = ({ setModalActive, options }) => {
   return (
     <StyledFormForAdding onSubmit={submitFormHandler}>
       <FlexWrap>
-        <Dropdown
+        <FormDropdown
           options={options}
           selected={selected} //state categories
           setSelected={setSelected}
-        ></Dropdown>
+        ></FormDropdown>
       </FlexWrap>
 
       <StyledInputBlock>

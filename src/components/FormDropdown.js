@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 
 const StyledDropdown = styled.div`
@@ -60,14 +59,13 @@ const StyledDropdownItem = styled.div`
   }
 `;
 
-export const Dropdown = ({ options, selectedOption, setSelectedOption }) => {
-  const dispatch = useDispatch();
+export const FormDropdown = ({ options, selected, setSelected }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
     <StyledDropdown>
       <StyledDropdownFlex onClick={() => setIsActive(!isActive)}>
-        <StyledDropdownText>{selectedOption}</StyledDropdownText>
+        <StyledDropdownText>{selected}</StyledDropdownText>
         <StyledDropdownArrow></StyledDropdownArrow>
       </StyledDropdownFlex>
       {isActive && (
@@ -76,7 +74,7 @@ export const Dropdown = ({ options, selectedOption, setSelectedOption }) => {
             <StyledDropdownItem
               key={option}
               onClick={() => {
-                dispatch(setSelectedOption(option));  
+                setSelected(option); //из юзстейта formforadding 
                 setIsActive(false);
               }}
             >
