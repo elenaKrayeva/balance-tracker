@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+
 
 
 const StyledDropdown = styled.div`
@@ -60,8 +60,7 @@ const StyledDropdownItem = styled.div`
   }
 `;
 
-export const Dropdown = ({ options, selectedOption, setSelectedOption }) => {
-  const dispatch = useDispatch();
+export const Dropdown = ({ options, selectedOption, onOptionItemClick }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -76,7 +75,7 @@ export const Dropdown = ({ options, selectedOption, setSelectedOption }) => {
             <StyledDropdownItem
               key={option}
               onClick={() => {
-                dispatch(setSelectedOption(option));  
+                onOptionItemClick(option);  
                 setIsActive(false);
               }}
             >

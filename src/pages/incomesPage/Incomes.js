@@ -3,7 +3,6 @@ import { IncomesBlock } from "./incomes.style";
 import { Flex } from "../../components/UI/Flex";
 import { Button } from "../../components/Button";
 import { Dropdown } from "../../components/Dropdown";
-import { IncomesDropdown, IncomesDropdown1 } from "../../mocks/index";
 import { IncomeItem } from "../../components/IncomeItem";
 import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
@@ -13,18 +12,28 @@ import {
   selectActiveDropdownsIncomes,
 } from "../../store/selectors";
 import { changeCategory, changeYear } from "../../store/filterIncomesSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export const Incomes = () => {
+  const dispatch = useDispatch();
   const incomes = useSelector(selectIncomesByDropdowns);
   const filterIncomes = useSelector(selectActiveDropdownsIncomes);
+  const categories = useSelector(
+    (state) => state.incomesCategories.incomesCategArr
+  );
 
-  const [modalActive, setModalActive] = useState(false);
+  const categoriesForFormAdding = [
+    ...new Set(categories.map((category) => category.name)),
+  ];
+
+  const categoriesDropdown = ["Все категории", ...categoriesForFormAdding];
 
   const YearsDropdown = [
     "Все года",
     ...new Set(incomes.map((data) => new Date(data.date).getFullYear())),
   ];
+
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <>
@@ -32,7 +41,7 @@ export const Incomes = () => {
         {modalActive && (
           <Modal setModalActive={setModalActive}>
             <FormForAdding
-              options={IncomesDropdown1}
+              options={categoriesForFormAdding}
               setModalActive={setModalActive}
             ></FormForAdding>
           </Modal>
@@ -44,14 +53,14 @@ export const Incomes = () => {
         </Flex>
         <Flex $justify="space-between">
           <Dropdown
-            options={IncomesDropdown}
-            selected={filterIncomes.selectedCategory}
-            setSelected={changeCategory}
+            options={categoriesDropdown}
+            selectedOption={filterIncomes.selectedCategory}
+            onOptionItemClick={(option) => dispatch(changeCategory(option))}
           />
           <Dropdown
             options={YearsDropdown}
-            selected={filterIncomes.selectedYear}
-            setSelected={changeYear}
+            selectedOption={filterIncomes.selectedYear}
+            onOptionItemClick={(option) => dispatch(changeYear(option))}
           />
         </Flex>
         {incomes.length === 0 ? (

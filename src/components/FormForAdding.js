@@ -5,7 +5,7 @@ import { FlexWrap } from "./UI/FlexWrap";
 import { useState } from "react";
 import { addExpense } from "../store/expensesSlice";
 import { useDispatch } from "react-redux";
-import { FormDropdown } from "./FormDropdown";
+import { Dropdown } from "./Dropdown";
 
 const StyledFormForAdding = styled.form`
   background: #e4e9f0;
@@ -62,11 +62,11 @@ export const FormForAdding = ({ setModalActive, options }) => {
   return (
     <StyledFormForAdding onSubmit={submitFormHandler}>
       <FlexWrap>
-        <FormDropdown
+        <Dropdown
           options={options}
-          selected={selected} //state categories
-          setSelected={setSelected}
-        ></FormDropdown>
+          selectedOption={selected} //state categories
+          onOptionItemClick={setSelected}
+        ></Dropdown>
       </FlexWrap>
 
       <StyledInputBlock>

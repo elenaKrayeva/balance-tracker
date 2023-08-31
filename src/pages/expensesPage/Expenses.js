@@ -6,7 +6,7 @@ import { Dropdown } from "../../components/Dropdown";
 import { ExpenseItem } from "../../components/ExpenseItem";
 import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FormForAdding } from "../../components/FormForAdding";
 import { changeCategory, changeYear } from "../../store/filterExpensesSlice";
 import {
@@ -14,10 +14,8 @@ import {
   selectActiveDropdowns,
 } from "../../store/selectors";
 
-
-
-
 export const Expenses = () => {
+  const dispatch = useDispatch();
   const expenses = useSelector(selectExpensesByDropdowns);
   const filterExpenses = useSelector(selectActiveDropdowns);
   const categories = useSelector(
@@ -56,13 +54,13 @@ export const Expenses = () => {
         <Flex $justify="space-between">
           <Dropdown
             options={categoriesDropdown}
-            selectedOption={filterExpenses.selectedCategory}     
-            setSelectedOption={changeCategory}
+            selectedOption={filterExpenses.selectedCategory}
+            onOptionItemClick={(option) => dispatch(changeCategory(option))}
           />
           <Dropdown
             options={YearsDropdown}
             selectedOption={filterExpenses.selectedYear}
-            setSelectedOption={changeYear}
+            onOptionItemClick={(option) => dispatch(changeYear(option))}
           />
         </Flex>
 

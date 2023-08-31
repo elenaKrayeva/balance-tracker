@@ -14,7 +14,7 @@ const incomesSlice = createSlice({
         date: new Date(action.payload.inputDate).getTime(),
         description: action.payload.inputName,
         category: action.payload.selected,
-        ampunt: action.payload.inputAmount,
+        amount: action.payload.inputAmount,
       });
     },
     removeIncome(state, action) {
