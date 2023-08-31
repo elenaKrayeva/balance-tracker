@@ -13,6 +13,7 @@ import {
 } from "../../store/selectors";
 import { changeCategory, changeYear } from "../../store/filterIncomesSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { addIncome } from "../../store/incomesSlice";
 
 export const Incomes = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,11 @@ export const Incomes = () => {
             <FormForAdding
               options={categoriesForFormAdding}
               setModalActive={setModalActive}
+              onAddItem={({ inputDate, selected, inputAmount, inputName }) =>
+                dispatch(
+                  addIncome({ inputDate, selected, inputAmount, inputName })
+                )
+              }
             ></FormForAdding>
           </Modal>
         )}

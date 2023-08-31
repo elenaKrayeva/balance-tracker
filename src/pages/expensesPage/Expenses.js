@@ -13,6 +13,7 @@ import {
   selectExpensesByDropdowns,
   selectActiveDropdowns,
 } from "../../store/selectors";
+import { addExpense } from "../../store/expensesSlice";
 
 export const Expenses = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,11 @@ export const Expenses = () => {
             <FormForAdding
               options={categoriesForFormAdding}
               setModalActive={setModalActive}
+              onAddItem={({ inputDate, selected, inputAmount, inputName }) =>
+                dispatch(
+                  addExpense({ inputDate, selected, inputAmount, inputName })
+                )
+              }
             ></FormForAdding>
           </Modal>
         )}

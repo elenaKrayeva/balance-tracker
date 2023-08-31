@@ -3,8 +3,6 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import { FlexWrap } from "./UI/FlexWrap";
 import { useState } from "react";
-import { addExpense } from "../store/expensesSlice";
-import { useDispatch } from "react-redux";
 import { Dropdown } from "./Dropdown";
 
 const StyledFormForAdding = styled.form`
@@ -25,13 +23,11 @@ const StyledLabel = styled.label`
   padding: 8px 0;
 `;
 
-export const FormForAdding = ({ setModalActive, options }) => {
+export const FormForAdding = ({ setModalActive, options, onAddItem }) => {
   const [selected, setSelected] = useState("Выберите категорию");
   const [inputName, setInputName] = useState("");
   const [inputAmount, setInputAmount] = useState("");
   const [inputDate, setInputDate] = useState("");
-
-  const dispatch = useDispatch();
 
   const inputNameHandler = (event) => {
     setInputName(event.target.value);
@@ -50,8 +46,7 @@ export const FormForAdding = ({ setModalActive, options }) => {
   const submitFormHandler = (event) => {
     event.preventDefault();
     if (!inputName.trim().length) return;
-
-    dispatch(addExpense({ inputDate, selected, inputAmount, inputName }));
+    onAddItem({ inputDate, selected, inputAmount, inputName });
     setSelected("Выберите категорию");
     setInputName("");
     setInputAmount("");
