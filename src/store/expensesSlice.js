@@ -12,9 +12,9 @@ const expensesSlice = createSlice({
         id: Date.now(),
         isEdditing: false,
         date: new Date(action.payload.inputDate).getTime(),
-        description: action.payload.inputName,
+        description: action.payload.inputName.charAt(0).toUpperCase() + action.payload.inputName.slice(1),
         category: action.payload.selected,
-        amount: action.payload.inputAmount,
+        amount: +action.payload.inputAmount,
       });
     },
     removeExpense(state, action) {

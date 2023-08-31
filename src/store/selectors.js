@@ -44,6 +44,31 @@ export const selectExpensesByDropdowns = createSelector(
       }
   }
 );
+export const selectActiveSort = state => state.sortExpenses;
+
+export const selectByDropdownsAndSorted = createSelector(
+  [selectExpensesByDropdowns, selectActiveSort],
+  ([...filteredExpenses], activeSort) => {
+    if (activeSort === 'byDateUp') {
+      return filteredExpenses.sort((a, b) => a.date - b.date)
+    };
+    if (activeSort === 'byDateDown') {
+      return filteredExpenses.sort((a, b) => b.date - a.date)
+    };
+    if (activeSort === 'byAlphabetUp') {
+      return filteredExpenses.sort((a, b) => a.description.localeCompare(b.description));
+    };
+    if (activeSort === 'byAlphabetDown') {
+      return filteredExpenses.sort((a, b) => b.description.localeCompare(a.description));
+    };
+    if (activeSort === 'byAmountUp') {
+      return filteredExpenses.sort((a, b) => a.amount - b.amount);;
+    };
+    if (activeSort === 'byAmountDown') {
+      return filteredExpenses.sort((a, b) => b.amount - a.amount);;
+    }
+  }
+)
 
 //==================================================================
 
