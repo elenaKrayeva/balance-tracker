@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = 'byDateUp';
+const initialState = 'byDateDown';
 
 
 const sortExpensesSlice  = createSlice({

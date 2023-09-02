@@ -10,16 +10,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { FormForAdding } from "../../components/FormForAdding";
 import { changeCategory, changeYear } from "../../store/filterExpensesSlice";
 import {
-  selectByDropdownsAndSorted,
   selectActiveDropdowns,
+  selectByDropdownsAndSortedExp,
 } from "../../store/selectors";
 import { addExpense } from "../../store/expensesSlice";
 import { changeSortExpenses } from "../../store/sortExpensesSlice";
 import { Text } from "../../components/UI/Text";
+import { Sort } from "../../components/Sort";
 
 export const Expenses = () => {
   const dispatch = useDispatch();
-  const expenses = useSelector(selectByDropdownsAndSorted);
+  const expenses = useSelector(selectByDropdownsAndSortedExp);
   const filterExpenses = useSelector(selectActiveDropdowns);
   const categories = useSelector(
     (state) => state.expensesCategories.expensesCategArr
@@ -92,41 +93,14 @@ export const Expenses = () => {
             onOptionItemClick={(option) => dispatch(changeYear(option))}
           />
         </Flex>
-        <Flex
-          $justify="center"
-          $direction="column"
-          $align="center"
-          $pt="10px"
-          $pb="10px"
-        >
-          <Text $align="center" $fw="400">
-            Сортировать по:
-          </Text>
-          <Flex $shadow="none" $mb="0">
-            <Button size="s" onClick={sortByAlphabUp}>
-              АЛФАВИТУ ↑
-            </Button>
-            <Button size="s" onClick={sortByAphabDown}>
-              АЛФАВИТУ ↓
-            </Button>
-          </Flex>
-          <Flex $shadow="none" $mb="0">
-            <Button size="s" onClick={sortByDateUp}>
-              ДАТЕ ↑
-            </Button>
-            <Button size="s" onClick={sortByDateDown}>
-              ДАТЕ ↓
-            </Button>
-          </Flex>
-          <Flex $shadow="none" $mb="0">
-            <Button size="s" onClick={sortByAmountUp}>
-              СТОИМОСТИ РАСХОДА ↑
-            </Button>
-            <Button size="s" onClick={sortByAmountDown}>
-              СТОИМОСТИ РАСХОДА ↓
-            </Button>
-          </Flex>
-        </Flex>
+        <Sort
+          sortByAlphabUp={sortByAlphabUp}
+          sortByAphabDown={sortByAphabDown}
+          sortByDateUp={sortByDateUp}
+          sortByDateDown={sortByDateDown}
+          sortByAmountUp={sortByAmountUp}
+          sortByAmountDown={sortByAmountDown}
+        />
         <Flex>
           <Text $align="right" $fw="500">
             Всего расходов: {sum} р.

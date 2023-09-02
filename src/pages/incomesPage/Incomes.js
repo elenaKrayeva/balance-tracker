@@ -8,16 +8,19 @@ import { Modal } from "../../components/Modal";
 import { AbsentData } from "../../components/AbsentData";
 import { FormForAdding } from "../../components/FormForAdding";
 import {
-  selectIncomesByDropdowns,
+  selectByDropdownsAndSortedIncomes,
   selectActiveDropdownsIncomes,
 } from "../../store/selectors";
 import { changeCategory, changeYear } from "../../store/filterIncomesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { addIncome } from "../../store/incomesSlice";
+import { Sort } from "../../components/Sort";
+import { changeSortIncomes } from "../../store/sortIncomesSlice";
+import { Text } from "../../components/UI/Text";
 
 export const Incomes = () => {
   const dispatch = useDispatch();
-  const incomes = useSelector(selectIncomesByDropdowns);
+  const incomes = useSelector(selectByDropdownsAndSortedIncomes);
   const filterIncomes = useSelector(selectActiveDropdownsIncomes);
   const categories = useSelector(
     (state) => state.incomesCategories.incomesCategArr
@@ -35,6 +38,27 @@ export const Incomes = () => {
   ];
 
   const [modalActive, setModalActive] = useState(false);
+
+  const sum = incomes.reduce((sum, current) => sum + current.amount, 0);
+
+  const sortByAlphabUp = () => {
+    dispatch(changeSortIncomes("byAlphabetUp"));
+  };
+  const sortByAphabDown = () => {
+    dispatch(changeSortIncomes("byAlphabetDown"));
+  };
+  const sortByDateUp = () => {
+    dispatch(changeSortIncomes("byDateUp"));
+  };
+  const sortByDateDown = () => {
+    dispatch(changeSortIncomes("byDateDown"));
+  };
+  const sortByAmountUp = () => {
+    dispatch(changeSortIncomes("byAmountUp"));
+  };
+  const sortByAmountDown = () => {
+    dispatch(changeSortIncomes("byAmountDown"));
+  };
 
   return (
     <>
@@ -68,6 +92,19 @@ export const Incomes = () => {
             selectedOption={filterIncomes.selectedYear}
             onOptionItemClick={(option) => dispatch(changeYear(option))}
           />
+        </Flex>
+        <Sort
+          sortByAlphabUp={sortByAlphabUp}
+          sortByAphabDown={sortByAphabDown}
+          sortByDateUp={sortByDateUp}
+          sortByDateDown={sortByDateDown}
+          sortByAmountUp={sortByAmountUp}
+          sortByAmountDown={sortByAmountDown}
+        />
+        <Flex>
+          <Text $align="right" $fw="500">
+            Всего доходов: {sum} р.
+          </Text>
         </Flex>
         {incomes.length === 0 ? (
           <AbsentData>Доходов нет</AbsentData>

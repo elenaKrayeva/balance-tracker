@@ -6,6 +6,8 @@ import filterIncomesReducer from './filterIncomesSlice';
 import expensesCategoriesReducer from './expensesCategoriesSlice';
 import incomesCategoriesReducer from './incomesCategoriesSlice';
 import sortExpensesReducer from './sortExpensesSlice';
+import sortIncomesReducer from './sortIncomesSlice';
+
 
 export default configureStore({
     reducer: {
@@ -16,5 +18,6 @@ export default configureStore({
         expensesCategories: expensesCategoriesReducer,
         incomesCategories: incomesCategoriesReducer,
         sortExpenses: sortExpensesReducer,
+        sortIncomes: sortIncomesReducer,
     }
 })

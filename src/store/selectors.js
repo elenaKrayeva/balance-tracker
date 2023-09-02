@@ -44,10 +44,10 @@ export const selectExpensesByDropdowns = createSelector(
       }
   }
 );
-export const selectActiveSort = state => state.sortExpenses;
+export const selectActiveSortExpenses = state => state.sortExpenses;
 
-export const selectByDropdownsAndSorted = createSelector(
-  [selectExpensesByDropdowns, selectActiveSort],
+export const selectByDropdownsAndSortedExp = createSelector(
+  [selectExpensesByDropdowns, selectActiveSortExpenses],
   ([...filteredExpenses], activeSort) => {
     if (activeSort === 'byDateUp') {
       return filteredExpenses.sort((a, b) => a.date - b.date)
@@ -116,3 +116,29 @@ export const selectIncomesByDropdowns = createSelector(
       }
   }
 );
+
+export const selectActiveSortIncomes = state => state.sortIncomes;
+
+export const selectByDropdownsAndSortedIncomes = createSelector(
+  [selectIncomesByDropdowns, selectActiveSortIncomes],
+  ([...filteredIncomes], activeSort) => {
+    if (activeSort === 'byDateUp') {
+      return filteredIncomes.sort((a, b) => a.date - b.date)
+    };
+    if (activeSort === 'byDateDown') {
+      return filteredIncomes.sort((a, b) => b.date - a.date)
+    };
+    if (activeSort === 'byAlphabetUp') {
+      return filteredIncomes.sort((a, b) => a.description.localeCompare(b.description));
+    };
+    if (activeSort === 'byAlphabetDown') {
+      return filteredIncomes.sort((a, b) => b.description.localeCompare(a.description));
+    };
+    if (activeSort === 'byAmountUp') {
+      return filteredIncomes.sort((a, b) => a.amount - b.amount);;
+    };
+    if (activeSort === 'byAmountDown') {
+      return filteredIncomes.sort((a, b) => b.amount - a.amount);;
+    }
+  }
+)
