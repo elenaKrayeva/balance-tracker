@@ -14,7 +14,6 @@ import {
   selectActiveDropdowns,
 } from "../../store/selectors";
 import { addExpense } from "../../store/expensesSlice";
-import { EmptyBlock } from "../../components/UI/EmptyBlock";
 import { changeSortExpenses } from "../../store/sortExpensesSlice";
 import { Text } from "../../components/UI/Text";
 
@@ -40,6 +39,25 @@ export const Expenses = () => {
   const sum = expenses.reduce((sum, current) => sum + current.amount, 0);
 
   const [modalActive, setModalActive] = useState(false);
+
+  const sortByAlphabUp = () => {
+    dispatch(changeSortExpenses("byAlphabetUp"));
+  };
+  const sortByAphabDown = () => {
+    dispatch(changeSortExpenses("byAlphabetDown"));
+  };
+  const sortByDateUp = () => {
+    dispatch(changeSortExpenses("byDateUp"));
+  };
+  const sortByDateDown = () => {
+    dispatch(changeSortExpenses("byDateDown"));
+  };
+  const sortByAmountUp = () => {
+    dispatch(changeSortExpenses("byAmountUp"));
+  };
+  const sortByAmountDown = () => {
+    dispatch(changeSortExpenses("byAmountDown"));
+  };
 
   return (
     <>
@@ -84,46 +102,28 @@ export const Expenses = () => {
           <Text $align="center" $fw="400">
             Сортировать по:
           </Text>
-          <Flex $shadow="none" $mb='0'>
-            <Button
-              size="s"
-              onClick={() => dispatch(changeSortExpenses("byAlphabetUp"))}
-            >
-              АЛФАВИТУ {String.fromCodePoint(0x1f815)}
+          <Flex $shadow="none" $mb="0">
+            <Button size="s" onClick={sortByAlphabUp}>
+              АЛФАВИТУ ↑
             </Button>
-            <Button
-              size="s"
-              onClick={() => dispatch(changeSortExpenses("byAlphabetDown"))}
-            >
-              АЛФАВИТУ {String.fromCodePoint(0x1f817)}
+            <Button size="s" onClick={sortByAphabDown}>
+              АЛФАВИТУ ↓
             </Button>
           </Flex>
-          <Flex $shadow="none" $mb='0'>
-            <Button
-              size="s"
-              onClick={() => dispatch(changeSortExpenses("byDateUp"))}
-            >
-              ДАТЕ {String.fromCodePoint(0x1f815)}
+          <Flex $shadow="none" $mb="0">
+            <Button size="s" onClick={sortByDateUp}>
+              ДАТЕ ↑
             </Button>
-            <Button
-              size="s"
-              onClick={() => dispatch(changeSortExpenses("byDateDown"))}
-            >
-              ДАТЕ {String.fromCodePoint(0x1f817)}
+            <Button size="s" onClick={sortByDateDown}>
+              ДАТЕ ↓
             </Button>
           </Flex>
-          <Flex $shadow="none" $mb='0'>
-            <Button
-              size="s"
-              onClick={() => dispatch(changeSortExpenses("byAmountUp"))}
-            >
-              СТОИМОСТИ РАСХОДА {String.fromCodePoint(0x1f815)}
+          <Flex $shadow="none" $mb="0">
+            <Button size="s" onClick={sortByAmountUp}>
+              СТОИМОСТИ РАСХОДА ↑
             </Button>
-            <Button
-              size="s"
-              onClick={() => dispatch(changeSortExpenses("byAmountDown"))}
-            >
-              СТОИМОСТИ РАСХОДА {String.fromCodePoint(0x1f817)}
+            <Button size="s" onClick={sortByAmountDown}>
+              СТОИМОСТИ РАСХОДА ↓
             </Button>
           </Flex>
         </Flex>
