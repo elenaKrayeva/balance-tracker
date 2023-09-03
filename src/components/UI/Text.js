@@ -4,14 +4,15 @@ const StyledText = styled.p`
 text-align: ${({$align}) => $align || 'center'};
 font-size: ${({$fz}) => $fz || '18px'};
 font-weight: ${({$fw}) => $fw || '300'};
-padding-left: ${({$pl}) => $pl || '10px'};
-padding-right: ${({$pr}) => $pr || '10px'};
-padding-bottom: ${({$pb}) => $pb || '10px'};
-padding-top: ${({$pt}) => $pt || '10px'};
+padding-left: ${({$pl}) => $pl || '5px'};
+padding-right: ${({$pr}) => $pr || '5px'};
+padding-bottom: ${({$pb}) => $pb || '5px'};
+padding-top: ${({$pt}) => $pt || '5px'};
 margin-left: ${({$ml}) => $ml || '0'};
 margin-right: ${({$mr}) => $mr || '0'};
 margin-bottom: ${({$mb}) => $mb || '0'};
 margin-top: ${({$mt}) => $mt || '0'};
+background-color: ${({$bgc}) => $bgc || 'transparent'};
 width: 100%;
 `;
 

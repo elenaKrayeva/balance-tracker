@@ -8,8 +8,8 @@ const StyledBlock = styled.div`
   padding-left: 5px;
 `;
 
-export const BalanceItem = ({data}) => {
+export const BalanceItem = ({data, sign}) => {
   return <StyledBlock>
-    {data} р.
+    {data} {sign}
   </StyledBlock>;
 };

@@ -103,6 +103,13 @@ export const periodExpensesCateg = createSelector(
   }
 );
 
+export const expensesSum = createSelector(
+  periodExpensesCateg,
+  (expCateg) => {
+      return expCateg.reduce((total, current) => total + current.sum, 0)
+  }
+);
+
 //==================================================================
 
 export const selectAllIncomes = (state) => state.incomes.incomesArr;
@@ -206,3 +213,11 @@ export const periodIncomesCateg = createSelector(
     return Object.values(categorySummaries);
   }
 );
+
+export const incomesSum = createSelector(
+  periodIncomesCateg,
+  (incCateg) => {
+      return incCateg.reduce((total, current) => total + current.sum, 0)
+  }
+);
+

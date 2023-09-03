@@ -8,7 +8,12 @@ import { useSelector } from "react-redux";
 import { BalanceItem } from "../../components/BalanceItem";
 import { useDispatch } from "react-redux";
 import { changeStartDate, changeEndDate } from "../../store/balanceSlice";
-import { periodExpensesCateg, periodIncomesCateg } from "../../store/selectors";
+import {
+  periodExpensesCateg,
+  periodIncomesCateg,
+  expensesSum,
+  incomesSum,
+} from "../../store/selectors";
 import {
   getTodayDate,
   getOneMonthAgoDate,
@@ -19,8 +24,14 @@ export const Balance = () => {
   const dispatch = useDispatch();
   const expenses = useSelector(periodExpensesCateg); //{category: '', sum: 0}
   const incomes = useSelector(periodIncomesCateg);
+  const expSum = useSelector(expensesSum);
+  const incSum = useSelector(incomesSum);
+
   console.log(expenses);
   console.log(incomes);
+  console.log(expSum);
+  console.log(incSum);
+
   const [startDate, setStartDate] = useState(getOneYearAgoDate());
   const [endDate, setEndDate] = useState(getTodayDate());
 
@@ -47,34 +58,51 @@ export const Balance = () => {
 
   return (
     <BalanceBlock>
-      <Flex $shadow="none" $justify="center" $bgc="transparent">
-        <Flex
-          $justify="center"
-          $mwidth="300px"
-          $mb="0"
-          $pr="10px"
-          $pl="10px"
-          $pt="10px"
-          $pb="10px"
-        >
-          <Text>Период с:</Text>
-          <Input
-            $width="90%"
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-          <Text>Период по:</Text>
-          <Input
-            $width="90%"
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
+      <Flex $gap="10px" $shadow="none" $bgc="transparent">
+        <Flex $shadow="none" $justify="center" $bgc="transparent">
+          <Flex
+            $justify="center"
+            $mwidth="300px"
+            $mb="0"
+            $pr="10px"
+            $pl="10px"
+            $pt="10px"
+            $pb="10px"
+          >
+            <Text $pb='0'>Период с:</Text>
+            <Input
+              $width="90%"
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+            <Text  $pb='0'>Период по:</Text>
+            <Input
+              $width="90%"
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Flex>
+        </Flex>
+        <Flex $mwidth="33%" $pt="8px" $pl="8px" $pr="8px" $pb="8px" $mb="0">
+          <Text $bgc="#7AEE3C">Доходы за период:</Text>
+          <Text $bgc="white" $mb="10px">
+            {incSum} р.
+          </Text>
+          <Text $bgc="rgba(238, 174, 202, 1)">Расходы за период:</Text>
+          <Text $bgc="white" $mb="10px">
+            {expSum} р.
+          </Text>
+          <Text $bgc="rgba(148, 187, 233, 1)">Баланс за период:</Text>
+          <Text $bgc="white">
+            {incSum - expSum} р.
+          </Text>
         </Flex>
       </Flex>
 
       <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
+        <Text $bgc="rgba(238, 174, 202, 1)">Расходы по категориям</Text>
         <CategoryBlock>
           {expenses.map((item) => (
             <BalanceItem key={item.id} data={item.category} />
@@ -82,11 +110,12 @@ export const Balance = () => {
         </CategoryBlock>
         <AmountBlock>
           {expenses.map((item) => (
-            <BalanceItem key={item.id} data={item.sum} />
+            <BalanceItem key={item.id} data={item.sum} sign="р." />
           ))}
         </AmountBlock>
       </Flex>
       <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
+        <Text $bgc="#7AEE3C">Доходы по категориям</Text>
         <CategoryBlock>
           {incomes.map((item) => (
             <BalanceItem key={item.id} data={item.category} />
@@ -94,7 +123,7 @@ export const Balance = () => {
         </CategoryBlock>
         <AmountBlock>
           {incomes.map((item) => (
-            <BalanceItem key={item.id} data={item.sum} />
+            <BalanceItem key={item.id} data={item.sum} sign="р." />
           ))}
         </AmountBlock>
       </Flex>
