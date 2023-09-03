@@ -13,8 +13,6 @@ padding: 15px;
 export const BalanceBlock = styled(Block)`
 flex:1;
 margin-left: 250px;
-display: flex;
-flex-direction: column;
 overflow-x: hidden;
 @media (max-width: 900px) {
     margin-left: 60px;
@@ -28,4 +26,11 @@ export const AppWrapper = styled.div`
   gap: 15px;
   max-width: 1400px;
   margin: 0 auto;
+`;
+
+export const CategoryBlock = styled.div`
+flex: 1;
+`;
+export const AmountBlock = styled.div`
+width: 100px;
 `;

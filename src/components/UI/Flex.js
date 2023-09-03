@@ -11,9 +11,10 @@ padding-right: ${({$pr}) => $pr || '0'};
 padding-bottom: ${({$pb}) => $pb || '0'};
 padding-top: ${({$pt}) => $pt || '0'};
 flex-wrap: ${({$wrap}) => $wrap || 'wrap'};
+max-width: ${({$mwidth}) => $mwidth || 'auto'};
 
 border: 2px solid transparent;
-border-radius: 15px;
+border-radius: ${({$bradius}) => $bradius || '15px'};
 box-shadow: ${({$shadow}) => $shadow || '4px 4px 8px 0px rgba(0, 0, 0, 0.2)'}; 
 background-color: ${({$bgc}) => $bgc || 'rgba(241, 231, 246, 0.6)'};
 margin-bottom: ${({$mb}) => $mb || '20px'};

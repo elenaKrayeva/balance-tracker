@@ -64,7 +64,7 @@ export const Admpanel = () => {
             </Button>
           </Flex>
         </Flex>
-        <Flex $direction="column">
+        <Flex $direction="column" $bgc='transparent' $shadow='none'>
           <Text> Категории доходов:</Text>
           {incomeCategories.map((categ) => (
             <CategoryIncomeItem key={categ.id} id={categ.id}>
@@ -88,7 +88,7 @@ export const Admpanel = () => {
             </Button>
           </Flex>
         </Flex>
-        <Flex $direction="column">
+        <Flex $direction="column" $bgc='transparent' $shadow='none'>
           <Text> Категории расходов:</Text>
           {expenseCategories.map((categ) => (
             <CategoryExpenseItem key={categ.id} id={categ.id}>

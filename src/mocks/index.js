@@ -67,6 +67,14 @@ export const EXPENSESDATA = [
     amount: 100,
     isEdditing: false,
   },
+  {
+    id: 1693731472392,
+    isEdditing: false,
+    date: new Date(2023, 8, 2).getTime(),
+    description: "20 литров",
+    category: "Бензин",
+    amount: 50,
+  },
 ];
 
 /* export const ExpenseDropdown1 = [
@@ -76,7 +84,6 @@ export const EXPENSESDATA = [
 export const ExpenseDropdown = ["Все категории", ...ExpenseDropdown1]; */
 
 //--------------Incomes----------------------------------------------------------
-
 
 export const INCOMESCATEGORIES = [
   {
@@ -132,10 +139,18 @@ export const INCOMESDATA = [
     amount: 1000,
     isEdditing: false,
   },
+  {
+    id: 1693731472392,
+    isEdditing: false,
+    date: new Date(2023, 8, 2).getTime(),
+    description: "ЗП",
+    category: "Зарплата",
+    amount: 500,
+  },
 ];
 
-export const IncomesDropdown1 = [
+/* export const IncomesDropdown1 = [
   ...new Set(INCOMESCATEGORIES.map((category) => category.name)),
 ];
 
-export const IncomesDropdown = ["Все категории", ...IncomesDropdown1];
+export const IncomesDropdown = ["Все категории", ...IncomesDropdown1]; */

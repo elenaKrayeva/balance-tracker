@@ -13,8 +13,6 @@ padding: 15px;
 export const ExpensesBlock = styled(Block)`
 flex:1;
 margin-left: 250px;
-display: flex;
-flex-direction: column;
 overflow-x: hidden;
 @media (max-width: 900px) {
     margin-left: 60px;
