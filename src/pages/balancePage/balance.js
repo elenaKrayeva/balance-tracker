@@ -27,11 +27,6 @@ export const Balance = () => {
   const expSum = useSelector(expensesSum);
   const incSum = useSelector(incomesSum);
 
-  console.log(expenses);
-  console.log(incomes);
-  console.log(expSum);
-  console.log(incSum);
-
   const [startDate, setStartDate] = useState(getOneYearAgoDate());
   const [endDate, setEndDate] = useState(getTodayDate());
 
@@ -58,7 +53,7 @@ export const Balance = () => {
 
   return (
     <BalanceBlock>
-      <Flex $gap="10px" $shadow="none" $bgc="transparent">
+      <Flex $gap="10px" $shadow="none" $bgc="transparent" $justify="center">
         <Flex $shadow="none" $justify="center" $bgc="transparent">
           <Flex
             $justify="center"
@@ -69,14 +64,14 @@ export const Balance = () => {
             $pt="10px"
             $pb="10px"
           >
-            <Text $pb='0'>Период с:</Text>
+            <Text $pb="0">Период с:</Text>
             <Input
               $width="90%"
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
-            <Text  $pb='0'>Период по:</Text>
+            <Text $pb="0">Период по:</Text>
             <Input
               $width="90%"
               type="date"
@@ -85,8 +80,8 @@ export const Balance = () => {
             />
           </Flex>
         </Flex>
-        <Flex $mwidth="33%" $pt="8px" $pl="8px" $pr="8px" $pb="8px" $mb="0">
-          <Text $bgc="#7AEE3C">Доходы за период:</Text>
+        <Flex $mwidth="300px" $pt="8px" $pl="8px" $pr="8px" $pb="8px" $mb="0">
+          <Text $bgc="rgba(148, 187, 233, 1)">Доходы за период:</Text>
           <Text $bgc="white" $mb="10px">
             {incSum} р.
           </Text>
@@ -94,10 +89,10 @@ export const Balance = () => {
           <Text $bgc="white" $mb="10px">
             {expSum} р.
           </Text>
-          <Text $bgc="rgba(148, 187, 233, 1)">Баланс за период:</Text>
-          <Text $bgc="white">
-            {incSum - expSum} р.
+          <Text $bgi="radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%)">
+            Баланс за период:
           </Text>
+          <Text $bgc="white">{incSum - expSum} р.</Text>
         </Flex>
       </Flex>
 
@@ -105,27 +100,17 @@ export const Balance = () => {
         <Text $bgc="rgba(238, 174, 202, 1)">Расходы по категориям</Text>
         <CategoryBlock>
           {expenses.map((item) => (
-            <BalanceItem key={item.id} data={item.category} />
+            <BalanceItem key={item.id} {...item} />
           ))}
         </CategoryBlock>
-        <AmountBlock>
-          {expenses.map((item) => (
-            <BalanceItem key={item.id} data={item.sum} sign="р." />
-          ))}
-        </AmountBlock>
       </Flex>
       <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
-        <Text $bgc="#7AEE3C">Доходы по категориям</Text>
+        <Text $bgc="rgba(148, 187, 233, 1)">Доходы по категориям</Text>
         <CategoryBlock>
           {incomes.map((item) => (
-            <BalanceItem key={item.id} data={item.category} />
+            <BalanceItem key={item.id} {...item} />
           ))}
         </CategoryBlock>
-        <AmountBlock>
-          {incomes.map((item) => (
-            <BalanceItem key={item.id} data={item.sum} sign="р." />
-          ))}
-        </AmountBlock>
       </Flex>
     </BalanceBlock>
   );

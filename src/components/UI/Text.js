@@ -13,6 +13,7 @@ margin-right: ${({$mr}) => $mr || '0'};
 margin-bottom: ${({$mb}) => $mb || '0'};
 margin-top: ${({$mt}) => $mt || '0'};
 background-color: ${({$bgc}) => $bgc || 'transparent'};
+background-image: ${({$bgi}) => $bgi || 'none'};
 width: 100%;
 `;
 
