@@ -31,6 +31,6 @@ export const AppWrapper = styled.div`
 export const CategoryBlock = styled.div`
 flex: 1;
 `;
-export const AmountBlock = styled.div`
-width: 100px;
+export const ChartBlock = styled.div`
+width: ${({$width}) => $width || 'auto'};
 `;

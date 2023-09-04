@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { BalanceBlock, CategoryBlock, AmountBlock } from "./balance.style";
+import { Doughnut, Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { BalanceBlock, CategoryBlock, ChartBlock } from "./balance.style";
 import { Input } from "../../components/Input";
 import { Flex } from "../../components/UI/Flex";
-import { Button } from "../../components/Button";
 import { Text } from "../../components/UI/Text";
 import { useSelector } from "react-redux";
 import { BalanceItem } from "../../components/BalanceItem";
@@ -18,7 +27,17 @@ import {
   getTodayDate,
   getOneMonthAgoDate,
   getOneYearAgoDate,
+  generateRgbColors,
 } from "../../utils";
+
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 export const Balance = () => {
   const dispatch = useDispatch();
@@ -39,6 +58,56 @@ export const Balance = () => {
     dispatch(changeEndDate({ endDate }));
   };
 
+  const expBarCat = expenses.map((expense) => expense.category);
+  const expBarSum = expenses.map((expense) => expense.sum);
+  const incBarCat = incomes.map((income) => income.category);
+  const incBarSum = incomes.map((income) => income.sum);
+
+  const data = {
+    labels: ["Доходы", "Расходы"],
+    datasets: [
+      {
+        label: "Баланс",
+        data: [incSum, expSum],
+        backgroundColor: ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"],
+        borderColor: ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"],
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+  };
+
+  const dataBarExp = {
+    labels: expBarCat,
+    datasets: [
+      {
+        label: "Расходы по категориям",
+        data: expBarSum,
+        backgroundColor: generateRgbColors(expBarCat.length),
+      },
+    ],
+  };
+
+  const optionsBarExp = {
+    responsive: true,
+  };
+
+  const dataBarInc = {
+    labels: incBarCat,
+    datasets: [
+      {
+        label: "Доходы по категориям",
+        data: incBarSum,
+        backgroundColor: generateRgbColors(incBarCat.length),
+      },
+    ],
+  };
+
+  const optionsBarInc = {
+    responsive: true,
+  };
   /*  const filterByDateRange = () => {
     if (!startDate || !endDate) {
       alert("Пожалуйста, выберите начальную и конечную даты.");
@@ -94,6 +163,19 @@ export const Balance = () => {
           </Text>
           <Text $bgc="white">{incSum - expSum} р.</Text>
         </Flex>
+        <Flex $pb="10px">
+          <ChartBlock $width="300px">
+            <Doughnut data={data} options={options}></Doughnut>
+          </ChartBlock>
+        </Flex>
+      </Flex>
+      <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
+        <Text $bgc="rgba(148, 187, 233, 1)">Доходы по категориям</Text>
+        <CategoryBlock>
+          {incomes.map((item) => (
+            <BalanceItem key={item.id} {...item} />
+          ))}
+        </CategoryBlock>
       </Flex>
 
       <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
@@ -104,13 +186,13 @@ export const Balance = () => {
           ))}
         </CategoryBlock>
       </Flex>
-      <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
-        <Text $bgc="rgba(148, 187, 233, 1)">Доходы по категориям</Text>
-        <CategoryBlock>
-          {incomes.map((item) => (
-            <BalanceItem key={item.id} {...item} />
-          ))}
-        </CategoryBlock>
+      <Flex>
+        <ChartBlock $width='50%'>
+          <Bar data={dataBarInc} options={optionsBarInc}></Bar>
+        </ChartBlock>
+        <ChartBlock $width='50%'>
+          <Bar data={dataBarExp} options={optionsBarExp}></Bar>
+        </ChartBlock>
       </Flex>
     </BalanceBlock>
   );
