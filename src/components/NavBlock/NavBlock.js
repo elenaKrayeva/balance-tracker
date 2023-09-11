@@ -2,12 +2,15 @@ import styled from "styled-components";
 import { AvatarBlock } from "./AvatarBlock";
 import { Flex } from "../UI/Flex";
 import { NavItem } from "./NavItem";
+import {LogOut} from "./LogOut";
 import { EmptyBlock } from "../UI/EmptyBlock";
 import imgExp from "../../assets/img/expenses.png";
 import imgInc from "../../assets/img/incomes.png";
 import imgLogout from "../../assets/img/logout.png";
 import imgBalance from "../../assets/img/balance.jpg"
 import imgGear from "../../assets/img/gear.jpg"
+import { useSelector } from "react-redux";
+import { getUser } from "../../store/authSelectors";
 
 const StyledNavBlock = styled.nav`
   min-height: calc(100vh - 30px);
@@ -30,9 +33,14 @@ const StyledNavBlock = styled.nav`
 `;
 
 export const NavBlock = ({$burgerOpen}) => {
+
+  const {displayName: userName, email} = useSelector(getUser);
+  const name = userName ? userName : email
+  console.log(userName, email)
+
   return (
     <StyledNavBlock $burgerOpen={$burgerOpen}>
-      <AvatarBlock />
+      <AvatarBlock name={name}/>
       <Flex>
         <NavItem $img={imgGear} to='/admpanel'>АдминПанель</NavItem>
       </Flex>
@@ -47,7 +55,7 @@ export const NavBlock = ({$burgerOpen}) => {
       </Flex>
       <EmptyBlock />
       <Flex $mb='0'>
-        <NavItem $img={imgLogout} to='/'>Выйти</NavItem>
+        <LogOut $img={imgLogout} />
       </Flex>
     </StyledNavBlock>
   );

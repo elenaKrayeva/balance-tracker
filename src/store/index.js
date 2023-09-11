@@ -8,6 +8,7 @@ import incomesCategoriesReducer from './incomesCategoriesSlice';
 import sortExpensesReducer from './sortExpensesSlice';
 import sortIncomesReducer from './sortIncomesSlice';
 import balanceSliceReducer from './balanceSlice';
+import authReducer from './authSlice';
 
 
 export default configureStore({
@@ -21,5 +22,6 @@ export default configureStore({
         sortExpenses: sortExpensesReducer,
         sortIncomes: sortIncomesReducer,
         balance: balanceSliceReducer,
+        auth: authReducer
     }
 })

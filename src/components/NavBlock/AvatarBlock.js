@@ -24,11 +24,11 @@ const UserName = styled.p`
   justify-content: flex-start;
   align-items: center;
 `;
-export function AvatarBlock() {
+export function AvatarBlock({name}) {
   return (
     <AvatarBlockWrap>
       <AvatarImage />
-      <UserName>Mike</UserName>
+      <UserName>{name}</UserName>
     </AvatarBlockWrap>
   );
 }

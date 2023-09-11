@@ -9,13 +9,12 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { BalanceBlock, CategoryBlock, ChartBlock } from "./balance.style";
+import { BalanceBlock, CategoryBlock, DoughnutBlock, BarBlock } from "./balance.style";
 import { Input } from "../../components/Input";
 import { Flex } from "../../components/UI/Flex";
 import { Text } from "../../components/UI/Text";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch  } from "react-redux";
 import { BalanceItem } from "../../components/BalanceItem";
-import { useDispatch } from "react-redux";
 import { changeStartDate, changeEndDate } from "../../store/balanceSlice";
 import {
   periodExpensesCateg,
@@ -58,16 +57,16 @@ export const Balance = () => {
     dispatch(changeEndDate({ endDate }));
   };
 
-  const expBarCat = expenses.map((expense) => expense.category);
-  const expBarSum = expenses.map((expense) => expense.sum);
-  const incBarCat = incomes.map((income) => income.category);
-  const incBarSum = incomes.map((income) => income.sum);
+  const expensesBarCategories = expenses.map((expense) => expense.category);
+  const expensesBarSum = expenses.map((expense) => expense.sum);
+  const incomesBarCategories = incomes.map((income) => income.category);
+  const incomesBarSum = incomes.map((income) => income.sum);
 
   const data = {
     labels: ["Доходы", "Расходы"],
     datasets: [
       {
-        label: "Баланс",
+        label: "",
         data: [incSum, expSum],
         backgroundColor: ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"],
         borderColor: ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"],
@@ -80,12 +79,12 @@ export const Balance = () => {
   };
 
   const dataBarExp = {
-    labels: expBarCat,
+    labels: expensesBarCategories,
     datasets: [
       {
         label: "Расходы по категориям",
-        data: expBarSum,
-        backgroundColor: generateRgbColors(expBarCat.length),
+        data: expensesBarSum,
+        backgroundColor: generateRgbColors(expensesBarCategories.length),
       },
     ],
   };
@@ -95,12 +94,12 @@ export const Balance = () => {
   };
 
   const dataBarInc = {
-    labels: incBarCat,
+    labels: incomesBarCategories,
     datasets: [
       {
         label: "Доходы по категориям",
-        data: incBarSum,
-        backgroundColor: generateRgbColors(incBarCat.length),
+        data: incomesBarSum,
+        backgroundColor: generateRgbColors(incomesBarCategories.length),
       },
     ],
   };
@@ -115,9 +114,8 @@ export const Balance = () => {
     }
     if (startDate > endDate) {
       alert("Период не выбран");
+      return;
     } 
-    dispatch(changeStartDate({ startDate }));
-    dispatch(changeEndDate({ endDate }));
   }; */
 
   return (
@@ -164,9 +162,9 @@ export const Balance = () => {
           <Text $bgc="white">{incSum - expSum} р.</Text>
         </Flex>
         <Flex $pb="10px">
-          <ChartBlock $width="300px">
+          <DoughnutBlock $width="300px">
             <Doughnut data={data} options={options}></Doughnut>
-          </ChartBlock>
+          </DoughnutBlock>
         </Flex>
       </Flex>
       <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
@@ -186,13 +184,13 @@ export const Balance = () => {
           ))}
         </CategoryBlock>
       </Flex>
-      <Flex>
-        <ChartBlock $width='50%'>
+      <Flex $justify='center'>
+        <BarBlock>
           <Bar data={dataBarInc} options={optionsBarInc}></Bar>
-        </ChartBlock>
-        <ChartBlock $width='50%'>
+        </BarBlock>
+        <BarBlock>
           <Bar data={dataBarExp} options={optionsBarExp}></Bar>
-        </ChartBlock>
+        </BarBlock>
       </Flex>
     </BalanceBlock>
   );

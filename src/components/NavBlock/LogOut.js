@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ImageBlock } from "./ImageBlock";
-import { NavLink } from "react-router-dom";
+import { logoutFromApp } from "../../store/authSlice";
+import { useDispatch } from "react-redux";
 
-
-const StyledLink = styled(NavLink)`
+const StyledButton = styled.button`
   padding: 15px;
   flex: 1;
   display: flex;
@@ -16,6 +16,7 @@ const StyledLink = styled(NavLink)`
   transition: all 0.2s ease;
   text-decoration: none;
   color: #000;
+  border: none;
 
   &:hover {
     font-weight: 400;
@@ -24,16 +25,19 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-export const NavItem = ({ $img, children, to }) => {
+export const LogOut = ({ $img }) => {
+
+    const dispatch = useDispatch();
+    
+    const logoutHandler = () => {
+        dispatch(logoutFromApp())
+    }
+
+
   return (
     <>
       <ImageBlock $img={$img} />
-      <StyledLink
-        to={to}
-        style={({ isActive }) => ({fontWeight: isActive ? "700" : "300" })}
-      >
-        {children}
-      </StyledLink>
+      <StyledButton onClick={logoutHandler}>Выйти</StyledButton>
     </>
   );
 };
