@@ -12,7 +12,9 @@ const expensesSlice = createSlice({
         id: Date.now(),
         isEdditing: false,
         date: new Date(action.payload.inputDate).getTime(),
-        description: action.payload.inputName.charAt(0).toUpperCase() + action.payload.inputName.slice(1),
+        description:
+          action.payload.inputName.charAt(0).toUpperCase() +
+          action.payload.inputName.slice(1),
         category: action.payload.selected,
         amount: +action.payload.inputAmount,
       });
@@ -26,7 +28,6 @@ const expensesSlice = createSlice({
       const expenseToEdit = state.expensesArr.find(
         (expense) => expense.id === action.payload.id
       );
-
       expenseToEdit.isEdditing = !expenseToEdit.isEdditing;
       expenseToEdit.description = action.payload.description;
     },

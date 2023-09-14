@@ -57,7 +57,7 @@ export const Login = () => {
         </InnerBlock>
         <InnerBlock>
           <StyledLabel>Password</StyledLabel>
-          <Input value={password} onChange={passwordHandler} />
+          <Input type='password' value={password} onChange={passwordHandler} />
         </InnerBlock>
         <ButtonBlock>
           <Button size="m" onClick={handleLoginBtn}>
