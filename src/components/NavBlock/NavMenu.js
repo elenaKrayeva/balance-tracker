@@ -29,6 +29,7 @@ const StyledBurger = styled.div`
   align-items: center;
   border: 2px solid #fff;
   border-radius: 10px;
+  cursor: pointer;
 
   background: radial-gradient(
     circle,

@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { EXPENSESDATA } from "../mocks";
+import { EXPENSES_DATA } from "../mocks";
 
 const expensesSlice = createSlice({
   name: "expenses",
   initialState: {
-    expensesArr: EXPENSESDATA,
+    expensesArr: EXPENSES_DATA,
   },
   reducers: {
     addExpense(state, action) {

@@ -41,7 +41,7 @@ export const register = (login, password) => {
 };
 
 export const logout = () => {
-    return signOut(auth). then(() => {
+    return signOut(auth).then(() => {
         console.log('user is logged out');
     })
 };

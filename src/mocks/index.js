@@ -26,7 +26,7 @@ export const EXPENSECATEGORIES = [
   },
 ];
 
-export const EXPENSESDATA = [
+export const EXPENSES_DATA = [
   {
     id: 1687621776364,
     date: new Date(2023, 4, 12).getTime(),
@@ -98,7 +98,7 @@ export const INCOMESCATEGORIES = [
   },
 ];
 
-export const INCOMESDATA = [
+export const INCOMES_DATA = [
   {
     id: 1754621776364,
     date: new Date(2023, 4, 12).getTime(),

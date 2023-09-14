@@ -33,6 +33,7 @@ const StyledButton = styled.button`
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
   margin: 10px 5px;
   transition: all 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     background: #fff;

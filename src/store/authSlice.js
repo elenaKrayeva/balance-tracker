@@ -25,7 +25,6 @@ export const logoutFromApp = createAsyncThunk(
   "auth/logoutFromApp",
   async (_, thunkApi) => {
     await logout();
-    thunkApi.dispatch(setUser(null)); //если убрать не работает    ??
   }
 );
 
@@ -49,7 +48,7 @@ export const signInUser = createAsyncThunk(
       user: { uid, email, displayName },
     } = await signIn(userEmail, password);
 
-     return { uid, email, displayName }; 
+    return { uid, email, displayName };
   }
 );
 
@@ -62,15 +61,16 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
+    [logoutFromApp.fulfilled]: (state) => {
+      state.user = null;
+    },
     [logoutFromApp.rejected]: (state) => {
       state.user = null;
     },
     [registerUser.fulfilled]: (state, userData) => {
-      console.log("userData in extra register", userData);
       state.user = userData.payload;
     },
     [signInUser.fulfilled]: (state, userData) => {
-      console.log("userData in extra signIn", userData);
       state.user = userData.payload;
     },
   },

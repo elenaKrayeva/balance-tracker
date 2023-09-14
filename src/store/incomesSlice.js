@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { INCOMESDATA } from "../mocks";
+import { INCOMES_DATA } from "../mocks";
 
 const incomesSlice = createSlice({
   name: "incomes",
   initialState: {
-    incomesArr: INCOMESDATA,
+    incomesArr: INCOMES_DATA,
   },
   reducers: {
     addIncome(state, action) {
