@@ -4,6 +4,7 @@ import { Flex } from "./UI/Flex";
 import { FlexWrap } from "./UI/FlexWrap";
 import { useState } from "react";
 import { Input } from "./Input";
+import { Text } from "./UI/Text";
 import { useDispatch } from "react-redux";
 import { removeIncome, editIncome } from "../store/incomesSlice";
 
@@ -63,6 +64,19 @@ export const IncomeItem = (props) => {
   const day = new Date(props.data.date).toLocaleString("ru-Ru", {
     day: "2-digit",
   });
+  const editHandler = () => {
+    dispatch(
+      editIncome({
+        id: props.data.id,
+        description: incomeDescription,
+      })
+    );
+  };
+
+  const removeHandler = () => {
+    dispatch(removeIncome(props.data.id));
+  };
+
   return (
     <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
       <StyledDateBlock>
@@ -82,30 +96,17 @@ export const IncomeItem = (props) => {
           )}
         </StyledDescripBlock>
         <FlexWrap>
-          <Button
-            size="m"
-            onClick={() =>
-              dispatch(
-                editIncome({
-                  id: props.data.id,
-                  description: incomeDescription,
-                })
-              )
-            }
-          >
+          <Button size="m" onClick={editHandler}>
             {props.data.isEdditing ? "Ok" : "Редактировать"}
           </Button>
-          <Button
-            size="m"
-            onClick={() => dispatch(removeIncome(props.data.id))}
-          >
+          <Button size="m" onClick={removeHandler}>
             Удалить
           </Button>
         </FlexWrap>
       </StyledFlexGrow>
       <StyledRightBlock>
         <StyledPriceBlock>{props.data.amount} р.</StyledPriceBlock>
-        <div>{props.data.category}</div>
+        <Text>{props.data.category}</Text>
       </StyledRightBlock>
     </Flex>
   );

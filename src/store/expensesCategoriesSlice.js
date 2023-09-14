@@ -19,14 +19,6 @@ const expensesCategoriesSlice = createSlice({
         (expenseCat) => expenseCat.id !== action.payload.id
       );
     },
-    /* editExpense(state, action) {
-      const expenseToEdit = state.expensesArr.find(
-        (expense) => expense.id === action.payload.id
-      );
-
-      expenseToEdit.isEdditing = !expenseToEdit.isEdditing;
-      expenseToEdit.description = action.payload.description;
-    }, */
   }, 
 });
 

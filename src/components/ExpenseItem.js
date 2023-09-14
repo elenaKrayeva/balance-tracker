@@ -4,9 +4,9 @@ import { Flex } from "./UI/Flex";
 import { FlexWrap } from "./UI/FlexWrap";
 import { useState } from "react";
 import { Input } from "./Input";
+import { Text } from "./UI/Text";
 import { useDispatch } from "react-redux";
 import { removeExpense, editExpense } from "../store/expensesSlice";
-
 
 const StyledDateBlock = styled.div`
   border: 2px solid #fff;
@@ -55,9 +55,6 @@ export const ExpenseItem = (props) => {
     props.data.description
   );
 
-  const expenseDescriptionHandler = (e) => {
-    setExpenseDescription(e.target.value);
-  };
   const month = new Date(props.data.date).toLocaleString("ru-Ru", {
     month: "long",
   });
@@ -65,6 +62,23 @@ export const ExpenseItem = (props) => {
   const day = new Date(props.data.date).toLocaleString("ru-Ru", {
     day: "2-digit",
   });
+
+  const expenseDescriptionHandler = (e) => {
+    setExpenseDescription(e.target.value);
+  };
+
+  const editHandler = () => {
+    dispatch(
+      editExpense({
+        id: props.data.id,
+        description: expenseDescription,
+      })
+    );
+  };
+
+  const removeHandler = () => {
+    dispatch(removeExpense(props.data.id));
+  }
   return (
     <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
       <StyledDateBlock>
@@ -84,22 +98,12 @@ export const ExpenseItem = (props) => {
           )}
         </StyledDescripBlock>
         <FlexWrap>
-          <Button
-            size="m"
-            onClick={() =>
-              dispatch(
-                editExpense({
-                  id: props.data.id,
-                  description: expenseDescription
-                })
-              )
-            }
-          >
+          <Button size="m" onClick={editHandler}>
             {props.data.isEdditing ? "Ok" : "Редактировать"}
           </Button>
           <Button
             size="m"
-            onClick={() => dispatch(removeExpense(props.data.id))}
+            onClick={removeHandler}
           >
             Удалить
           </Button>
@@ -107,7 +111,7 @@ export const ExpenseItem = (props) => {
       </StyledFlexGrow>
       <StyledRightBlock>
         <StyledPriceBlock>{props.data.amount} р.</StyledPriceBlock>
-        <div>{props.data.category}</div>
+        <Text>{props.data.category}</Text>
       </StyledRightBlock>
     </Flex>
   );

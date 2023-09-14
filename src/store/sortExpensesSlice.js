@@ -7,7 +7,9 @@ const sortExpensesSlice  = createSlice({
     name: 'sortExpenses',
     initialState,
     reducers: {
-        changeSortExpenses: (_, action) => action.payload,
+        changeSortExpenses (state, action) {
+            state = action.payload;
+        } 
     },
 });
 

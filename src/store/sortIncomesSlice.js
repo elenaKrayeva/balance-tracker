@@ -7,7 +7,9 @@ const sortIncomesSlice  = createSlice({
     name: 'sortIncomes',
     initialState,
     reducers: {
-        changeSortIncomes: (_, action) => action.payload,
+        changeSortIncomes (state, action) {
+            state = action.payload;
+        },
     },
 });
 

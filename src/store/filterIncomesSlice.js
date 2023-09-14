@@ -10,10 +10,10 @@ const filterIncomesSlice = createSlice({
     initialState,
     reducers: {
         changeCategory(state, action)  {
-           state.selectedCategory = action.payload
+           state.selectedCategory = action.payload;
         },
         changeYear(state, action) {
-            state.selectedYear = action.payload
+            state.selectedYear = action.payload;
         }
     }
 });
