@@ -4,11 +4,9 @@ import { AppWrapper } from "./balance.style";
 
 export const BalancePage = () => {
   return (
-    <>
-      <AppWrapper>
-        <NavMenu />
-        <Balance />
-      </AppWrapper>
-    </>
+    <AppWrapper>
+      <NavMenu />
+      <Balance />
+    </AppWrapper>
   );
 };

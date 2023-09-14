@@ -10,6 +10,8 @@ export const Sort = ({
   sortByDateDown,
   sortByAmountUp,
   sortByAmountDown,
+  $bgim,
+  $bgc
 }) => {
   return (
     <Flex
@@ -22,26 +24,26 @@ export const Sort = ({
         Сортировать по:
       </Text>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button size="s" onClick={sortByAlphabUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAlphabUp}>
           АЛФАВИТУ ↑
         </Button>
-        <Button size="s" onClick={sortByAphabDown}>
+        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAphabDown}>
           АЛФАВИТУ ↓
         </Button>
       </Flex>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button size="s" onClick={sortByDateUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByDateUp}>
           ДАТЕ ↑
         </Button>
-        <Button size="s" onClick={sortByDateDown}>
+        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByDateDown}>
           ДАТЕ ↓
         </Button>
       </Flex>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button size="s" onClick={sortByAmountUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAmountUp}>
           СТОИМОСТИ ↑
         </Button>
-        <Button size="s" onClick={sortByAmountDown}>
+        <Button  $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAmountDown}>
           СТОИМОСТИ ↓
         </Button>
       </Flex>

@@ -78,7 +78,7 @@ export const ExpenseItem = (props) => {
 
   const removeHandler = () => {
     dispatch(removeExpense(props.data.id));
-  }
+  };
   return (
     <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
       <StyledDateBlock>
@@ -98,13 +98,10 @@ export const ExpenseItem = (props) => {
           )}
         </StyledDescripBlock>
         <FlexWrap>
-          <Button size="m" onClick={editHandler}>
+          <Button $bgim="none" $bgc="rgba(238, 174, 202, 0.7)" size="m" onClick={editHandler}>
             {props.data.isEdditing ? "Ok" : "Редактировать"}
           </Button>
-          <Button
-            size="m"
-            onClick={removeHandler}
-          >
+          <Button $bgim="none" $bgc="rgba(238, 174, 202, 0.7)" size="m" onClick={removeHandler}>
             Удалить
           </Button>
         </FlexWrap>

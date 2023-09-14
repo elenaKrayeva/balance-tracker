@@ -19,11 +19,10 @@ export const SIZE = {
 };
 
 const StyledButton = styled.button`
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+  background-color: ${({ $bgc }) => $bgc || "rgba(148, 187, 233, 1)"};
+  background-image: ${({ $bgim }) =>
+    $bgim ||
+    "radial-gradient( circle,  rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%)"};
   color: #fff;
   border-radius: 15px;
   border: 2px solid #fff;

@@ -35,16 +35,16 @@ export const Register = () => {
   };
 
   const handleRegister = () => {
-    dispatch(registerUser({email, password}));
+    dispatch(registerUser({ email, password }));
     navigate("/");
-  }
+  };
 
   return (
     <StyledWrapper>
       <StyledInner>
         <InnerBlock>
           <StyledLabel>Email</StyledLabel>
-          <Input value={email} onChange={emailHandler} type='email' required/>
+          <Input value={email} onChange={emailHandler} type="email" required />
         </InnerBlock>
         <InnerBlock>
           <StyledLabel>Password</StyledLabel>
@@ -55,7 +55,9 @@ export const Register = () => {
           <Input value={passwordRep} onChange={passwordRepHandler} />
         </InnerBlock>
         <ButtonBlock>
-          <Button size="m" onClick={handleRegister}>Register</Button>
+          <Button size="m" onClick={handleRegister}>
+            Register
+          </Button>
           <Button size="m" onClick={handleCancelBtn}>
             Cancel
           </Button>

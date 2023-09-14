@@ -4,11 +4,9 @@ import { AppWrapper } from "./expenses.style";
 
 export const ExpensesPage = () => {
   return (
-    <>
-      <AppWrapper>
-        <NavMenu />
-        <Expenses />
-      </AppWrapper>
-    </>
+    <AppWrapper>
+      <NavMenu />
+      <Expenses />
+    </AppWrapper>
   );
 };

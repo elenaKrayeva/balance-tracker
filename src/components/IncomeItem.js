@@ -96,10 +96,10 @@ export const IncomeItem = (props) => {
           )}
         </StyledDescripBlock>
         <FlexWrap>
-          <Button size="m" onClick={editHandler}>
+          <Button $bgim="none" size="m" onClick={editHandler}>
             {props.data.isEdditing ? "Ok" : "Редактировать"}
           </Button>
-          <Button size="m" onClick={removeHandler}>
+          <Button $bgim="none" size="m" onClick={removeHandler}>
             Удалить
           </Button>
         </FlexWrap>

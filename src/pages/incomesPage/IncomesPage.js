@@ -4,11 +4,9 @@ import { AppWrapper } from "./incomes.style";
 
 export const IncomesPage = () => {
   return (
-    <>
-      <AppWrapper>
-        <NavMenu />
-        <Incomes />
-      </AppWrapper>
-    </>
+    <AppWrapper>
+      <NavMenu />
+      <Incomes />
+    </AppWrapper>
   );
 };

@@ -100,6 +100,8 @@ export const Expenses = () => {
           sortByDateDown={sortByDateDown}
           sortByAmountUp={sortByAmountUp}
           sortByAmountDown={sortByAmountDown}
+          $bgim="none"
+          $bgc="rgba(238, 174, 202, 0.8)"
         />
         <Flex>
           <Text $align="right" $fw="500">
