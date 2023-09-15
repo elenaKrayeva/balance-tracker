@@ -40,28 +40,28 @@ export const NavBlock = ({ $burgerOpen }) => {
   return (
     <StyledNavBlock $burgerOpen={$burgerOpen}>
       <AvatarBlock name={name} />
-      <Flex>
+      <Flex $bgc='#fff' $border='2px solid rgba(241, 231, 246, 0.6)' $align='center'>
         <NavItem $img={imgGear} to="/admpanel">
           АдминПанель
         </NavItem>
       </Flex>
-      <Flex>
+      <Flex $bgc='#fff' $border='2px solid rgba(241, 231, 246, 0.6)' $align='center'>
         <NavItem $img={imgBalance} to="/balance">
           Баланс
         </NavItem>
       </Flex>
-      <Flex>
+      <Flex $bgc='#fff' $border='2px solid rgba(241, 231, 246, 0.6)' $align='center'>
         <NavItem $img={imgExp} to="/expenses">
           Расходы
         </NavItem>
       </Flex>
-      <Flex>
+      <Flex $bgc='#fff' $border='2px solid rgba(241, 231, 246, 0.6)' $align='center'>
         <NavItem $img={imgInc} to="/incomes">
           Доходы
         </NavItem>
       </Flex>
       <EmptyBlock />
-      <Flex $mb="0">
+      <Flex $mb="0" $bgc='#fff' $border='2px solid rgba(241, 231, 246, 0.6)' $align='center'>
         <LogOut $img={imgLogout} />
       </Flex>
     </StyledNavBlock>

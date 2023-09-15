@@ -6,6 +6,7 @@ const AvatarBlockWrap = styled.div`
   border-radius: 15px;
   padding: 5px;
   display: flex;
+  align-items: center;
   margin-bottom: 30px;
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
 `;
