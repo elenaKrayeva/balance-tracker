@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -48,14 +48,17 @@ export const Balance = () => {
   const [startDate, setStartDate] = useState(getOneYearAgoDate());
   const [endDate, setEndDate] = useState(getTodayDate());
 
-  useEffect(() => {
-    filterByDateRange();
-  }, [startDate, endDate]);
-
-  const filterByDateRange = () => {
+  const filterByDateRange = useCallback(() => {
     dispatch(changeStartDate({ startDate }));
     dispatch(changeEndDate({ endDate }));
-  };
+  }, [dispatch, startDate, endDate]);
+
+
+  useEffect(() => {
+    filterByDateRange();
+  }, [filterByDateRange]);
+
+
 
   const expensesBarCategories = expenses.map((expense) => expense.category);
   const expensesBarSum = expenses.map((expense) => expense.sum);

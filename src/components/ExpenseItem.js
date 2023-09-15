@@ -98,10 +98,10 @@ export const ExpenseItem = (props) => {
           )}
         </StyledDescripBlock>
         <FlexWrap>
-          <Button $bgim="none" $bgc="rgba(238, 174, 202, 0.7)" size="m" onClick={editHandler}>
+          <Button $bgim="none" $bgc="rgba(238, 174, 202, 0.7)" $color='#000' size="m" onClick={editHandler}>
             {props.data.isEdditing ? "Ok" : "Редактировать"}
           </Button>
-          <Button $bgim="none" $bgc="rgba(238, 174, 202, 0.7)" size="m" onClick={removeHandler}>
+          <Button $bgim="none" $bgc="rgba(238, 174, 202, 0.7)" $color='#000' size="m" onClick={removeHandler}>
             Удалить
           </Button>
         </FlexWrap>

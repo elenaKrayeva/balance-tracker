@@ -59,12 +59,12 @@ export const selectByDropdownsAndSortedExp = createSelector(
     }
     if (activeSort === "byAlphabetUp") {
       return filteredExpenses.sort((a, b) =>
-        a.description.localeCompare(b.description)
+        b.description.localeCompare(a.description)
       );
     }
     if (activeSort === "byAlphabetDown") {
       return filteredExpenses.sort((a, b) =>
-        b.description.localeCompare(a.description)
+        a.description.localeCompare(b.description)
       );
     }
     if (activeSort === "byAmountUp") {
@@ -170,12 +170,12 @@ export const selectByDropdownsAndSortedIncomes = createSelector(
     }
     if (activeSort === "byAlphabetUp") {
       return filteredIncomes.sort((a, b) =>
-        a.description.localeCompare(b.description)
+        b.description.localeCompare(a.description)
       );
     }
     if (activeSort === "byAlphabetDown") {
       return filteredIncomes.sort((a, b) =>
-        b.description.localeCompare(a.description)
+        a.description.localeCompare(b.description)
       );
     }
     if (activeSort === "byAmountUp") {

@@ -44,7 +44,7 @@ export const Incomes = () => {
   const sortByAlphabUp = () => {
     dispatch(changeSortIncomes("byAlphabetUp"));
   };
-  const sortByAphabDown = () => {
+  const sortByAlphabDown = () => {
     dispatch(changeSortIncomes("byAlphabetDown"));
   };
   const sortByDateUp = () => {
@@ -95,7 +95,7 @@ export const Incomes = () => {
         </Flex>
         <Sort
           sortByAlphabUp={sortByAlphabUp}
-          sortByAphabDown={sortByAphabDown}
+          sortByAlphabDown={sortByAlphabDown}
           sortByDateUp={sortByDateUp}
           sortByDateDown={sortByDateDown}
           sortByAmountUp={sortByAmountUp}

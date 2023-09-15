@@ -44,7 +44,7 @@ export const Expenses = () => {
   const sortByAlphabUp = () => {
     dispatch(changeSortExpenses("byAlphabetUp"));
   };
-  const sortByAphabDown = () => {
+  const sortByAlphabDown = () => {
     dispatch(changeSortExpenses("byAlphabetDown"));
   };
   const sortByDateUp = () => {
@@ -95,13 +95,14 @@ export const Expenses = () => {
         </Flex>
         <Sort
           sortByAlphabUp={sortByAlphabUp}
-          sortByAphabDown={sortByAphabDown}
+          sortByAlphabDown={sortByAlphabDown}
           sortByDateUp={sortByDateUp}
           sortByDateDown={sortByDateDown}
           sortByAmountUp={sortByAmountUp}
           sortByAmountDown={sortByAmountDown}
           $bgim="none"
           $bgc="rgba(238, 174, 202, 0.8)"
+          $color="#000"
         />
         <Flex>
           <Text $align="right" $fw="500">

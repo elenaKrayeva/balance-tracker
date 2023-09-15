@@ -23,7 +23,7 @@ const StyledButton = styled.button`
   background-image: ${({ $bgim }) =>
     $bgim ||
     "radial-gradient( circle,  rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%)"};
-  color: #fff;
+  color: ${({ $color }) => $color || "#fff"};;
   border-radius: 15px;
   border: 2px solid #fff;
   text-transform: capitalize;

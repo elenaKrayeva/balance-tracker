@@ -5,13 +5,14 @@ import { Text } from "./UI/Text";
 
 export const Sort = ({
   sortByAlphabUp,
-  sortByAphabDown,
+  sortByAlphabDown,
   sortByDateUp,
   sortByDateDown,
   sortByAmountUp,
   sortByAmountDown,
   $bgim,
-  $bgc
+  $bgc,
+  $color
 }) => {
   return (
     <Flex
@@ -24,26 +25,26 @@ export const Sort = ({
         Сортировать по:
       </Text>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAlphabUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAlphabUp}>
           АЛФАВИТУ ↑
         </Button>
-        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAphabDown}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAlphabDown}>
           АЛФАВИТУ ↓
         </Button>
       </Flex>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByDateUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByDateUp}>
           ДАТЕ ↑
         </Button>
-        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByDateDown}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByDateDown}>
           ДАТЕ ↓
         </Button>
       </Flex>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAmountUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAmountUp}>
           СТОИМОСТИ ↑
         </Button>
-        <Button  $bgim={$bgim} $bgc={$bgc} size="s" onClick={sortByAmountDown}>
+        <Button  $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAmountDown}>
           СТОИМОСТИ ↓
         </Button>
       </Flex>

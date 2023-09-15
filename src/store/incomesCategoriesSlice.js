@@ -10,7 +10,7 @@ const incomesCategoriesSlice = createSlice({
     addIncomeCategory(state, action) {
       state.incomesCategArr.push({
         id: Date.now(),
-        name: action.payload.inputIncome,
+        name: action.payload.inputIncome.charAt(0).toUpperCase() + action.payload.inputIncome.slice(1),
         isEdditing: false,
       });
     },

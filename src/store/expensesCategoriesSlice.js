@@ -10,7 +10,7 @@ const expensesCategoriesSlice = createSlice({
     addExpenseCategory(state, action) {
       state.expensesCategArr.push({
         id: Date.now(),
-        name: action.payload.inputExpense,
+        name: action.payload.inputExpense.charAt(0).toUpperCase() + action.payload.inputExpense.slice(1),
         isEdditing: false,
       });
     },
