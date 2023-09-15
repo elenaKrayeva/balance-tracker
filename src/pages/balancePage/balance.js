@@ -9,11 +9,16 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { BalanceBlock, CategoryBlock, DoughnutBlock, BarBlock } from "./balance.style";
+import {
+  BalanceBlock,
+  CategoryBlock,
+  DoughnutBlock,
+  BarBlock,
+} from "./balance.style";
 import { Input } from "../../components/Input";
 import { Flex } from "../../components/UI/Flex";
 import { Text } from "../../components/UI/Text";
-import { useSelector, useDispatch  } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { BalanceItem } from "../../components/BalanceItem";
 import { changeStartDate, changeEndDate } from "../../store/balanceSlice";
 import {
@@ -28,6 +33,7 @@ import {
   getOneYearAgoDate,
   generateRgbColors,
 } from "../../utils";
+import { getChartData, getChartOptions } from "../../dataCharts";
 
 ChartJS.register(
   ArcElement,
@@ -40,7 +46,7 @@ ChartJS.register(
 
 export const Balance = () => {
   const dispatch = useDispatch();
-  const expenses = useSelector(periodExpensesCateg); //{category: '', sum: 0}
+  const expenses = useSelector(periodExpensesCateg);
   const incomes = useSelector(periodIncomesCateg);
   const expSum = useSelector(expensesSum);
   const incSum = useSelector(incomesSum);
@@ -53,63 +59,42 @@ export const Balance = () => {
     dispatch(changeEndDate({ endDate }));
   }, [dispatch, startDate, endDate]);
 
-
   useEffect(() => {
     filterByDateRange();
   }, [filterByDateRange]);
-
-
 
   const expensesBarCategories = expenses.map((expense) => expense.category);
   const expensesBarSum = expenses.map((expense) => expense.sum);
   const incomesBarCategories = incomes.map((income) => income.category);
   const incomesBarSum = incomes.map((income) => income.sum);
 
-  const data = {
-    labels: ["Доходы", "Расходы"],
-    datasets: [
-      {
-        label: "",
-        data: [incSum, expSum],
-        backgroundColor: ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"],
-        borderColor: ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"],
-      },
-    ],
-  };
+  const data = getChartData(
+    ["Доходы", "Расходы"],
+    "",
+    [incSum, expSum],
+    ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"],
+    ["rgba(148, 187, 233, 1)", "rgba(238, 174, 202, 1)"]
+  );
 
-  const options = {
-    responsive: true,
-  };
+  const options = getChartOptions();
 
-  const dataBarExp = {
-    labels: expensesBarCategories,
-    datasets: [
-      {
-        label: "Расходы по категориям",
-        data: expensesBarSum,
-        backgroundColor: generateRgbColors(expensesBarCategories.length),
-      },
-    ],
-  };
+  const dataBarExp = getChartData(
+    expensesBarCategories,
+    "Расходы по категориям",
+    expensesBarSum,
+    generateRgbColors(expensesBarCategories.length)
+  );
 
-  const optionsBarExp = {
-    responsive: true,
-  };
+  const optionsBarExp = getChartOptions();
 
-  const dataBarInc = {
-    labels: incomesBarCategories,
-    datasets: [
-      {
-        label: "Доходы по категориям",
-        data: incomesBarSum,
-        backgroundColor: generateRgbColors(incomesBarCategories.length),
-      },
-    ],
-  };
+  const dataBarInc = getChartData(
+    incomesBarCategories,
+    "Доходы по категориям",
+    incomesBarSum,
+    generateRgbColors(incomesBarCategories.length)
+  );
 
-  const optionsBarInc = {
-    responsive: true,
-  };
+  const optionsBarInc = getChartOptions();
   /*  const filterByDateRange = () => {
     if (!startDate || !endDate) {
       alert("Пожалуйста, выберите начальную и конечную даты.");
@@ -178,7 +163,6 @@ export const Balance = () => {
           ))}
         </CategoryBlock>
       </Flex>
-
       <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
         <Text $bgc="rgba(238, 174, 202, 1)">Расходы по категориям</Text>
         <CategoryBlock>
@@ -187,7 +171,7 @@ export const Balance = () => {
           ))}
         </CategoryBlock>
       </Flex>
-      <Flex $justify='center'>
+      <Flex $justify="center">
         <BarBlock>
           <Bar data={dataBarInc} options={optionsBarInc}></Bar>
         </BarBlock>

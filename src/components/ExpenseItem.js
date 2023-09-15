@@ -37,7 +37,7 @@ const StyledFlexGrow = styled.div`
 `;
 
 const StyledPriceBlock = styled(StyledDateBlock)`
-  padding: 10px;
+  padding: 5px;
   font-size: 20px;
 `;
 const StyledRightBlock = styled.div`
