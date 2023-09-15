@@ -4,12 +4,7 @@ import { Button } from "./Button";
 import { Text } from "./UI/Text";
 
 export const Sort = ({
-  sortByAlphabUp,
-  sortByAlphabDown,
-  sortByDateUp,
-  sortByDateDown,
-  sortByAmountUp,
-  sortByAmountDown,
+  sortByButtonName,
   $bgim,
   $bgc,
   $color
@@ -25,26 +20,26 @@ export const Sort = ({
         Сортировать по:
       </Text>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAlphabUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" name='byAlphabetUp' onClick={sortByButtonName}>
           АЛФАВИТУ ↑
         </Button>
-        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAlphabDown}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" name='byAlphabetDown' onClick={sortByButtonName}>
           АЛФАВИТУ ↓
         </Button>
       </Flex>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByDateUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" name='byDateUp' onClick={sortByButtonName}>
           ДАТЕ ↑
         </Button>
-        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByDateDown}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" name='byDateDown' onClick={sortByButtonName}>
           ДАТЕ ↓
         </Button>
       </Flex>
       <Flex $shadow="none" $mb="0" $justify="center">
-        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAmountUp}>
+        <Button $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" name='byAmountUp' onClick={sortByButtonName}>
           СТОИМОСТИ ↑
         </Button>
-        <Button  $bgim={$bgim} $bgc={$bgc} $color={$color} size="s" onClick={sortByAmountDown}>
+        <Button  $bgim={$bgim} $bgc={$bgc} $color={$color} size="s"  name='byAmountDown' onClick={sortByButtonName}>
           СТОИМОСТИ ↓
         </Button>
       </Flex>

@@ -41,23 +41,8 @@ export const Incomes = () => {
 
   const sum = incomes.reduce((sum, current) => sum + current.amount, 0);
 
-  const sortByAlphabUp = () => {
-    dispatch(changeSortIncomes("byAlphabetUp"));
-  };
-  const sortByAlphabDown = () => {
-    dispatch(changeSortIncomes("byAlphabetDown"));
-  };
-  const sortByDateUp = () => {
-    dispatch(changeSortIncomes("byDateUp"));
-  };
-  const sortByDateDown = () => {
-    dispatch(changeSortIncomes("byDateDown"));
-  };
-  const sortByAmountUp = () => {
-    dispatch(changeSortIncomes("byAmountUp"));
-  };
-  const sortByAmountDown = () => {
-    dispatch(changeSortIncomes("byAmountDown"));
+  const sortByButtonName = ({target: {name}}) => {
+    dispatch(changeSortIncomes(name))
   };
 
   return (
@@ -94,12 +79,7 @@ export const Incomes = () => {
           />
         </Flex>
         <Sort
-          sortByAlphabUp={sortByAlphabUp}
-          sortByAlphabDown={sortByAlphabDown}
-          sortByDateUp={sortByDateUp}
-          sortByDateDown={sortByDateDown}
-          sortByAmountUp={sortByAmountUp}
-          sortByAmountDown={sortByAmountDown}
+          sortByButtonName={sortByButtonName}
           $bgim='none'
         />
         <Flex>

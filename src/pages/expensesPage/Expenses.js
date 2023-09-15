@@ -41,23 +41,8 @@ export const Expenses = () => {
 
   const [modalActive, setModalActive] = useState(false);
 
-  const sortByAlphabUp = () => {
-    dispatch(changeSortExpenses("byAlphabetUp"));
-  };
-  const sortByAlphabDown = () => {
-    dispatch(changeSortExpenses("byAlphabetDown"));
-  };
-  const sortByDateUp = () => {
-    dispatch(changeSortExpenses("byDateUp"));
-  };
-  const sortByDateDown = () => {
-    dispatch(changeSortExpenses("byDateDown"));
-  };
-  const sortByAmountUp = () => {
-    dispatch(changeSortExpenses("byAmountUp"));
-  };
-  const sortByAmountDown = () => {
-    dispatch(changeSortExpenses("byAmountDown"));
+  const sortByButtonName = ({target: {name}}) => {
+    dispatch(changeSortExpenses(name))
   };
 
   return (
@@ -94,12 +79,7 @@ export const Expenses = () => {
           />
         </Flex>
         <Sort
-          sortByAlphabUp={sortByAlphabUp}
-          sortByAlphabDown={sortByAlphabDown}
-          sortByDateUp={sortByDateUp}
-          sortByDateDown={sortByDateDown}
-          sortByAmountUp={sortByAmountUp}
-          sortByAmountDown={sortByAmountDown}
+          sortByButtonName={sortByButtonName}
           $bgim="none"
           $bgc="rgba(238, 174, 202, 0.8)"
           $color="#000"
