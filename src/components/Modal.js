@@ -19,6 +19,9 @@ const SyledModalContent = styled.div`
   border: 1px solid white;
   border-radius: 15px;
   width: fit-content;
+  @media (max-width: 468px) {
+    width: 340px;
+  }
 `;
 
 export const Modal = ({ setModalActive, children }) => {

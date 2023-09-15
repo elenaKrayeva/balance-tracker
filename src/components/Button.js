@@ -42,6 +42,19 @@ const StyledButton = styled.button`
     box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, 0.6) inset;
   }
 
+  @media (max-width: 768px) and (min-width: 469px) {
+    padding: 7px 7px;
+    font-size: 14px;
+    border-radius: 10px;
+  };
+
+  @media (max-width: 468px) {
+    padding: 5px 7px;
+    font-size: 12px;
+    border-radius: 7px;
+  };
+ 
+
   ${({ size = "m" }) => {
     return SIZE[size];
   }}

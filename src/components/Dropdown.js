@@ -13,7 +13,7 @@ const StyledDropdown = styled.div`
 
 const StyledDropdownFlex = styled.div`
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -21,7 +21,10 @@ const StyledDropdownFlex = styled.div`
 
   &:hover {
     background: #f0f4f5;
-  }
+  };
+  @media (max-width: 468px) {
+    padding: 5px;
+  };
 `;
 
 const StyledDropdownText = styled.div`
@@ -29,6 +32,9 @@ const StyledDropdownText = styled.div`
   flex: 1;
   font-weight: 400;
   transition: all 0.2 ease;
+  @media (max-width: 468px) {
+    padding: 2px;
+  };
 `;
 const StyledDropdownArrow = styled.div`
   width: 0;
@@ -49,6 +55,9 @@ const StyledDropdownContent = styled.div`
   top: 110%;
   left: 0;
   z-index: 1;
+  @media (max-width: 468px) {
+    padding: 5px;
+  };
 `;
 
 const StyledDropdownItem = styled.div`
@@ -57,7 +66,10 @@ const StyledDropdownItem = styled.div`
   border-radius: 5px;
   &:hover {
     background: #f0f4f5;
-  }
+  };
+  @media (max-width: 468px) {
+    padding: 5px;
+  };
 `;
 
 export const Dropdown = ({ options, selectedOption, onOptionItemClick }) => {

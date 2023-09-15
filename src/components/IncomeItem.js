@@ -19,6 +19,12 @@ const StyledDateBlock = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(228, 233, 240, 0.5);
+   @media (max-width: 390px) {
+    width: 100%;
+    flex-direction: row;
+    gap: 5px;
+    padding: 10px;
+  }
 `;
 const StyledText = styled.div`
   font-weight: inherit;
@@ -46,6 +52,9 @@ const StyledRightBlock = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 130px;
+   @media (max-width: 390px) {
+    width: 100%;
+  }
 `;
 
 export const IncomeItem = (props) => {
