@@ -31,4 +31,8 @@ export function generateRgbColors(numColors) {
     const blue = Math.floor(Math.random() * 256); 
     return `rgb(${red},${green},${blue})`;
   });
-}
+};
+
+export function capitalizeStr(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+} 

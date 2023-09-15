@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { INCOMES_DATA } from "../mocks";
+import { capitalizeStr } from "../utils";
 
 const incomesSlice = createSlice({
   name: "incomes",
@@ -12,7 +13,7 @@ const incomesSlice = createSlice({
         id: Date.now(),
         isEdditing: false,
         date: new Date(action.payload.inputDate).getTime(),
-        description: action.payload.inputName.charAt(0).toUpperCase() + action.payload.inputName.slice(1),
+        description: capitalizeStr(action.payload.inputName),
         category: action.payload.selected,
         amount: +action.payload.inputAmount,
       });
@@ -27,7 +28,7 @@ const incomesSlice = createSlice({
         (income) => income.id === action.payload.id
       );
       incomeToEdit.isEdditing = !incomeToEdit.isEdditing;
-      incomeToEdit.description = action.payload.description;
+      incomeToEdit.description = capitalizeStr(action.payload.description);
     },
   },
 });

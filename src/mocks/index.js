@@ -77,11 +77,6 @@ export const EXPENSES_DATA = [
   },
 ];
 
-/* export const ExpenseDropdown1 = [
-  ...new Set(EXPENSECATEGORIES.map((category) => category.name)),
-];
-
-export const ExpenseDropdown = ["Все категории", ...ExpenseDropdown1]; */
 
 //--------------Incomes----------------------------------------------------------
 
@@ -126,7 +121,7 @@ export const INCOMES_DATA = [
   {
     id: 1688834776364,
     date: new Date(2023, 6, 18).getTime(),
-    description: "подработка",
+    description: "Подработка",
     category: "Фриланс",
     amount: 200,
     isEdditing: false,
@@ -149,8 +144,4 @@ export const INCOMES_DATA = [
   },
 ];
 
-/* export const IncomesDropdown1 = [
-  ...new Set(INCOMESCATEGORIES.map((category) => category.name)),
-];
 
-export const IncomesDropdown = ["Все категории", ...IncomesDropdown1]; */
