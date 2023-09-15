@@ -95,16 +95,6 @@ export const Balance = () => {
   );
 
   const optionsBarInc = getChartOptions();
-  /*  const filterByDateRange = () => {
-    if (!startDate || !endDate) {
-      alert("Пожалуйста, выберите начальную и конечную даты.");
-      return;
-    }
-    if (startDate > endDate) {
-      alert("Период не выбран");
-      return;
-    } 
-  }; */
 
   return (
     <BalanceBlock>

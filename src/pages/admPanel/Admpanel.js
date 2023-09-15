@@ -57,7 +57,8 @@ export const Admpanel = () => {
           </InputDiv>
           <Flex
             $justify="center"
-            style={{ boxShadow: "none", marginBottom: "0" }}
+            $shadow='none'
+            $mb='0'
           >
             <Button size="m" onClick={addIncomeCategoryHandler}>
               Добавить
@@ -81,7 +82,8 @@ export const Admpanel = () => {
           </InputDiv>
           <Flex
             $justify="center"
-            style={{ boxShadow: "none", marginBottom: "0" }}
+            $shadow='none'
+            $mb='0'
           >
             <Button size="m" onClick={addExpenseCategoryHandler}>
               Добавить
