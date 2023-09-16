@@ -8,6 +8,7 @@ const StyledDiv = styled.div`
 const StyledP = styled.p`
   padding: 0 8px;
   font-size: 16px;
+  max-width: 250px;
 `;
 
 const StyledButton = styled.button`

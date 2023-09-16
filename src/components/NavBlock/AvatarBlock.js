@@ -19,11 +19,12 @@ const AvatarImage = styled.div`
 `;
 
 const UserName = styled.p`
-  padding: 15px;
+  padding: 15px 5px;
   flex: 1;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  word-break: break-all;
 `;
 export function AvatarBlock({name}) {
   return (

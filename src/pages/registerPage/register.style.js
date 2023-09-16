@@ -6,6 +6,7 @@ export const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 10px;
 `;
 
 export const StyledInner = styled.form`

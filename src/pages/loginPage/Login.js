@@ -12,10 +12,10 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loginWithGoogle, setError, clearError } from "../../store/authSlice";
 import { useSelector } from "react-redux";
-import { getUser } from "../../store/authSelectors";
+import { getUser, getErrorMessage } from "../../store/authSelectors";
 import { signInUser } from "../../store/authSlice";
 import { ErrorMessage } from "../../components/ErrorMessage";
-import { getErrorMessage } from "../../store/authSelector";
+
 
 export const Login = () => {
   const user = useSelector(getUser);

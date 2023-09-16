@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser, setError, clearError } from "../../store/authSlice";
 import { useSelector } from "react-redux";
-import { getErrorMessage } from "../../store/authSelector";
+import { getErrorMessage } from "../../store/authSelectors";
 import { ErrorMessage } from "../../components/ErrorMessage";
 
 export const Register = () => {
@@ -36,7 +36,7 @@ export const Register = () => {
   };
 
   const handleCancelBtn = () => {
-    clearError();
+    dispatch(clearError());
     navigate("/");
   };
 
@@ -71,11 +71,11 @@ export const Register = () => {
         </InnerBlock>
         <InnerBlock>
           <StyledLabel>Пароль</StyledLabel>
-          <Input value={password} onChange={passwordHandler} />
+          <Input type="password" value={password} onChange={passwordHandler} />
         </InnerBlock>
         <InnerBlock>
           <StyledLabel>Пароль</StyledLabel>
-          <Input value={passwordRep} onChange={passwordRepHandler} />
+          <Input type="password" value={passwordRep} onChange={passwordRepHandler} />
         </InnerBlock>
         <ButtonBlock>
           <Button size="m" type="submit" onClick={handleRegister}>
