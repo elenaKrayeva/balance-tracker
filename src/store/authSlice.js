@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   user: null,
+  error: null,
 };
 
 export const loginWithGoogle = createAsyncThunk(
@@ -59,6 +60,12 @@ const authSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+    clearError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers: {
     [logoutFromApp.fulfilled]: (state) => {
@@ -67,14 +74,20 @@ const authSlice = createSlice({
     [logoutFromApp.rejected]: (state) => {
       state.user = null;
     },
-    [registerUser.fulfilled]: (state, userData) => {
-      state.user = userData.payload;
+    [registerUser.fulfilled]: (state, action) => {
+      state.user = action.payload;
     },
-    [signInUser.fulfilled]: (state, userData) => {
-      state.user = userData.payload;
+    [registerUser.rejected]: (state, action) => {
+      state.error = action.error.code;
+    },
+    [signInUser.fulfilled]: (state, action) => {
+      state.user = action.payload;
+    },
+    [signInUser.rejected]: (state, action) => {
+      state.error = action.error.code;
     },
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, setError, clearError } = authSlice.actions;
 export default authSlice.reducer;

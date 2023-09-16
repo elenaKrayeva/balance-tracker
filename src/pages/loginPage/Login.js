@@ -10,13 +10,16 @@ import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { loginWithGoogle } from "../../store/authSlice";
+import { loginWithGoogle, setError, clearError } from "../../store/authSlice";
 import { useSelector } from "react-redux";
 import { getUser } from "../../store/authSelectors";
 import { signInUser } from "../../store/authSlice";
+import { ErrorMessage } from "../../components/ErrorMessage";
+import { getErrorMessage } from "../../store/authSelector";
 
 export const Login = () => {
   const user = useSelector(getUser);
+  const error = useSelector(getErrorMessage);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,37 +40,50 @@ export const Login = () => {
   };
 
   const handleLoginBtn = () => {
-    dispatch(signInUser({ email, password }));
+    try {
+      dispatch(signInUser({ email, password }));
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
   };
 
   const handleGoogleLogin = () => {
+    handleClearError();
     dispatch(loginWithGoogle());
   };
 
   const handleRegister = () => {
+    handleClearError();
     navigate("/register");
+  };
+
+  const handleClearError = () => {
+    dispatch(clearError());
   };
 
   return (
     <StyledWrapper>
       <StyledInner>
         <InnerBlock>
-          <StyledLabel>Email</StyledLabel>
+          <StyledLabel>Е-мейл</StyledLabel>
           <Input value={email} onChange={emailHandler} />
         </InnerBlock>
+        {error && (
+            <ErrorMessage error={error} handleClearError={handleClearError} />
+          )}
         <InnerBlock>
-          <StyledLabel>Password</StyledLabel>
-          <Input type='password' value={password} onChange={passwordHandler} />
+          <StyledLabel>Пароль</StyledLabel>
+          <Input type="password" value={password} onChange={passwordHandler} />
         </InnerBlock>
         <ButtonBlock>
           <Button size="m" onClick={handleLoginBtn}>
-            LogIn
+            Войти
           </Button>
           <Button size="m" onClick={handleGoogleLogin}>
-            Login with Google
+            Войти через Google
           </Button>
           <Button size="m" onClick={handleRegister}>
-            Register
+            Регистрация
           </Button>
         </ButtonBlock>
       </StyledInner>

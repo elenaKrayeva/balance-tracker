@@ -11,9 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/authSlice";
+import { useSelector } from "react-redux";
+import { getErrorMessage } from "../../store/authSelector";
 
 export const Register = () => {
   const navigate = useNavigate();
+  const error = useSelector(getErrorMessage);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRep, setPasswordRep] = useState("");
@@ -43,23 +46,23 @@ export const Register = () => {
     <StyledWrapper>
       <StyledInner>
         <InnerBlock>
-          <StyledLabel>Email</StyledLabel>
+          <StyledLabel>Е-мейл</StyledLabel>
           <Input value={email} onChange={emailHandler} type="email" required />
         </InnerBlock>
         <InnerBlock>
-          <StyledLabel>Password</StyledLabel>
+          <StyledLabel>Пароль</StyledLabel>
           <Input value={password} onChange={passwordHandler} />
         </InnerBlock>
         <InnerBlock>
-          <StyledLabel>Password</StyledLabel>
+          <StyledLabel>Пароль</StyledLabel>
           <Input value={passwordRep} onChange={passwordRepHandler} />
         </InnerBlock>
         <ButtonBlock>
           <Button size="m" onClick={handleRegister}>
-            Register
+            Зарегистрироваться
           </Button>
           <Button size="m" onClick={handleCancelBtn}>
-            Cancel
+            Отмена
           </Button>
         </ButtonBlock>
       </StyledInner>
