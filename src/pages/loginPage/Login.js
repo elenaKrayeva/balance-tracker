@@ -43,7 +43,7 @@ export const Login = () => {
     try {
       dispatch(signInUser({ email, password }));
     } catch (error) {
-      dispatch(setError(error.message));
+      dispatch(setError(error));
     }
   };
 

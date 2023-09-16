@@ -10,9 +10,10 @@ import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../store/authSlice";
+import { registerUser, setError, clearError } from "../../store/authSlice";
 import { useSelector } from "react-redux";
 import { getErrorMessage } from "../../store/authSelector";
+import { ErrorMessage } from "../../components/ErrorMessage";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRep, setPasswordRep] = useState("");
+  const [passErr, setPassErr] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -34,12 +36,30 @@ export const Register = () => {
   };
 
   const handleCancelBtn = () => {
+    clearError();
     navigate("/");
   };
 
-  const handleRegister = () => {
-    dispatch(registerUser({ email, password }));
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (password !== passwordRep) {
+      setPassErr("Пароли не совпадают");
+      return;
+    }
+    try {
+      dispatch(registerUser({ email, password }));
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
+  };
+
+  if (error === "") {
     navigate("/");
+    dispatch(clearError());
+  }
+
+  const handleClearError = () => {
+    dispatch(clearError());
   };
 
   return (
@@ -58,13 +78,22 @@ export const Register = () => {
           <Input value={passwordRep} onChange={passwordRepHandler} />
         </InnerBlock>
         <ButtonBlock>
-          <Button size="m" onClick={handleRegister}>
+          <Button size="m" type="submit" onClick={handleRegister}>
             Зарегистрироваться
           </Button>
           <Button size="m" onClick={handleCancelBtn}>
             Отмена
           </Button>
         </ButtonBlock>
+        {passErr && (
+          <ErrorMessage
+            error={passErr}
+            handleClearError={() => setPassErr(null)}
+          />
+        )}
+        {error && (
+          <ErrorMessage error={error} handleClearError={handleClearError} />
+        )}
       </StyledInner>
     </StyledWrapper>
   );

@@ -12,8 +12,15 @@ export const getErrorMessage = createSelector(
             return error = "Пользователь не существует"
         };
         if (error === "auth/invalid-email") {
-            return error = "Неправильный email"
+            return error = "Неправильный е-мейл"
         };
+        if (error === "Cannot read properties of undefined (reading 'user')") {
+            return error = ""
+        };
+        if (error === "Firebase: Error (auth/email-already-in-use).") {
+            return error = "Е-мейл уже зарегистрирован"
+        };
+       
 
     }
     

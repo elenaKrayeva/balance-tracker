@@ -8,7 +8,7 @@ export const StyledWrapper = styled.div`
   align-items: center;
 `;
 
-export const StyledInner = styled.div`
+export const StyledInner = styled.form`
   width: 500px;
   height: 300px;
   background: #e4e9f0;

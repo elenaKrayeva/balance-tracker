@@ -60,10 +60,10 @@ const authSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
-    setError: (state, action) => {
+    setError(state, action) {
       state.error = action.payload;
     },
-    clearError: (state) => {
+    clearError(state) {
       state.error = null;
     },
   },
@@ -78,7 +78,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     [registerUser.rejected]: (state, action) => {
-      state.error = action.error.code;
+      state.error = action.error.message;
     },
     [signInUser.fulfilled]: (state, action) => {
       state.user = action.payload;
