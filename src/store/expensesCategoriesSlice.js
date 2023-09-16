@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { EXPENSECATEGORIES } from "../mocks";
+import { EXPENSE_CATEGORIES } from "../mocks";
+import {capitalizeStr} from "../utils"
 
 const expensesCategoriesSlice = createSlice({
   name: "expensesCategories",
   initialState: {
-    expensesCategArr: EXPENSECATEGORIES,
+    expensesCategArr: EXPENSE_CATEGORIES,
   },
   reducers: {
     addExpenseCategory(state, action) {
       state.expensesCategArr.push({
         id: Date.now(),
-        name: action.payload.inputExpense.charAt(0).toUpperCase() + action.payload.inputExpense.slice(1),
+        name: capitalizeStr(action.payload.inputExpense),
         isEdditing: false,
       });
     },

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-
-
 const StyledDropdown = styled.div`
   margin: 20px;
   width: 300px;
@@ -21,10 +19,10 @@ const StyledDropdownFlex = styled.div`
 
   &:hover {
     background: #f0f4f5;
-  };
+  }
   @media (max-width: 468px) {
     padding: 5px;
-  };
+  }
 `;
 
 const StyledDropdownText = styled.div`
@@ -34,7 +32,7 @@ const StyledDropdownText = styled.div`
   transition: all 0.2 ease;
   @media (max-width: 468px) {
     padding: 2px;
-  };
+  }
 `;
 const StyledDropdownArrow = styled.div`
   width: 0;
@@ -57,7 +55,7 @@ const StyledDropdownContent = styled.div`
   z-index: 1;
   @media (max-width: 468px) {
     padding: 5px;
-  };
+  }
 `;
 
 const StyledDropdownItem = styled.div`
@@ -66,14 +64,19 @@ const StyledDropdownItem = styled.div`
   border-radius: 5px;
   &:hover {
     background: #f0f4f5;
-  };
+  }
   @media (max-width: 468px) {
     padding: 5px;
-  };
+  }
 `;
 
 export const Dropdown = ({ options, selectedOption, onOptionItemClick }) => {
   const [isActive, setIsActive] = useState(false);
+
+  const selectHandler = (option) => {
+    onOptionItemClick(option);
+    setIsActive(false);
+  };
 
   return (
     <StyledDropdown>
@@ -87,8 +90,7 @@ export const Dropdown = ({ options, selectedOption, onOptionItemClick }) => {
             <StyledDropdownItem
               key={option}
               onClick={() => {
-                onOptionItemClick(option);  
-                setIsActive(false);
+                selectHandler(option);
               }}
             >
               {option}

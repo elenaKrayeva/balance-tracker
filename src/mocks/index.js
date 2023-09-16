@@ -1,4 +1,4 @@
-export const EXPENSECATEGORIES = [
+export const EXPENSE_CATEGORIES = [
   {
     id: 1689271774041,
     name: "Коммунальные платежи",
@@ -80,7 +80,7 @@ export const EXPENSES_DATA = [
 
 //--------------Incomes----------------------------------------------------------
 
-export const INCOMESCATEGORIES = [
+export const INCOMES_CATEGORIES = [
   {
     id: 1689321774041,
     name: "Зарплата",
