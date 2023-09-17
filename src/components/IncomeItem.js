@@ -87,7 +87,7 @@ export const IncomeItem = (props) => {
   };
 
   return (
-    <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px">
+    <Flex $pb="10px" $pr="10px" $pt="10px" $pl="10px" $gap="10px">
       <StyledDateBlock>
         <StyledText>{day}</StyledText>
         <StyledText>{month}</StyledText>

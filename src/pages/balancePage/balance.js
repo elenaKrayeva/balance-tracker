@@ -140,7 +140,7 @@ export const Balance = () => {
           <Text $bgc="white">{incSum - expSum} р.</Text>
         </Flex>
         <Flex $pb="10px">
-          <DoughnutBlock $width="300px">
+          <DoughnutBlock $width="270px">
             <Doughnut data={data} options={options}></Doughnut>
           </DoughnutBlock>
         </Flex>

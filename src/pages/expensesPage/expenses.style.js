@@ -24,6 +24,6 @@ export const AppWrapper = styled.div`
   padding: 15px;
   display: flex;
   gap: 15px;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 `;
