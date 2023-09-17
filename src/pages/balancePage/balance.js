@@ -51,8 +51,8 @@ export const Balance = () => {
   const expSum = useSelector(expensesSum);
   const incSum = useSelector(incomesSum);
 
-  const [startDate, setStartDate] = useState(getOneYearAgoDate());
-  const [endDate, setEndDate] = useState(getTodayDate());
+  const [startDate, setStartDate] = useState(() => getOneYearAgoDate());
+  const [endDate, setEndDate] = useState(() => getTodayDate());
 
   const filterByDateRange = useCallback(() => {
     dispatch(changeStartDate({ startDate }));

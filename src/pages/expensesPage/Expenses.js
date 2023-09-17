@@ -25,6 +25,8 @@ export const Expenses = () => {
   const categories = useSelector(
     (state) => state.expensesCategories.expensesCategArr
   );
+  const activeSortBtn = useSelector((state) => state.sortExpenses);
+  
 
   const categoriesForFormAdding = [
     ...new Set(categories.map((category) => category.name)),
@@ -80,6 +82,7 @@ export const Expenses = () => {
         </Flex>
         <Sort
           sortByButtonName={sortByButtonName}
+          activeSortBtn={activeSortBtn}
           $bgim="none"
           $bgc="rgba(238, 174, 202, 0.8)"
           $color="#000"
